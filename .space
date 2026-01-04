@@ -5,7 +5,7 @@
 	"repo"              : {
 		"org"           : "minejs",
 		"name"          : "jsx",
-		"version"       : "0.0.1",
+		"version"       : "0.0.2",
 		"desc"          : "Lightweight JSX runtime with fine-grained reactivity.",
 		"kw"            : [
 			"minejs",
@@ -14,9 +14,9 @@
 			"render"
 		],
 		"license"       : "MIT",
-		"issues"        : "https://github.com/minejs/jsx/issues",
-		"homepage"      : "https://github.com/minejs/jsx#readme",
-		"git_url"       : "git+https://github.com/minejs/jsx.git"
+		"issues"        : "https://github.com/minejs-org/jsx/issues",
+		"homepage"      : "https://github.com/minejs-org/jsx#readme",
+		"git_url"       : "git+https://github.com/minejs-org/jsx.git"
 	},
 	"author"            : {
 		"id"            : "maysara-elshewehy",

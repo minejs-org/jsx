@@ -1,6 +1,6 @@
 {
 	"name"                             : "@minejs/jsx",
-	"version"                          : "0.0.1",
+	"version"                          : "0.0.2",
 	"description"                      : "Lightweight JSX runtime with fine-grained reactivity.",
 	"keywords"                         : [
 		"minejs",
@@ -9,9 +9,9 @@
 		"render"
 	],
 	"license"                          : "MIT",
-	"homepage"                         : "https://github.com/minejs/jsx#readme",
+	"homepage"                         : "https://github.com/minejs-org/jsx#readme",
 	"bugs"                             : {
-		"url"                          : "https://github.com/minejs/jsx/issues"
+		"url"                          : "https://github.com/minejs-org/jsx/issues"
 	},
 	"author"                           : {
 		"name"                         : "Maysara",
@@ -20,7 +20,7 @@
 	},
 	"repository"                       : {
 		"type"                         : "git",
-		"url"                          : "git+https://github.com/minejs/jsx.git"
+		"url"                          : "git+https://github.com/minejs-org/jsx.git"
 	},
 	"type"                             : "module",
 	"main"                             : "./dist/main.js",
