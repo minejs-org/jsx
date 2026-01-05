@@ -8,6 +8,8 @@
     "lib"                               : ["DOM", "ES2020", "ESNext"],
     "module"                            : "ESNext",
     "moduleResolution"                  : "bundler",
+    "jsx"                               : "react-jsx",
+    "jsxImportSource"                   : "@minejs/jsx",
     "declaration"                       : true,
     "emitDeclarationOnly"               : false,
     "outDir"                            : "./dist",

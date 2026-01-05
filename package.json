@@ -1,6 +1,6 @@
 {
 	"name"                             : "@minejs/jsx",
-	"version"                          : "0.0.4",
+	"version"                          : "0.0.5",
 	"description"                      : "Lightweight JSX runtime with fine-grained reactivity.",
 	"keywords"                         : [
 		"minejs",
@@ -31,6 +31,16 @@
 			"types"                    : "./dist/index.d.ts",
 			"import"                   : "./dist/index.js",
 			"require"                  : "./dist/index.js"
+		},
+		"./jsx-runtime": {
+			"types"                    : "./dist/jsx-runtime.d.ts",
+			"import"                   : "./dist/jsx-runtime.js",
+			"require"                  : "./dist/jsx-runtime.js"
+		},
+		"./jsx-dev-runtime": {
+			"types"                    : "./dist/jsx-dev-runtime.d.ts",
+			"import"                   : "./dist/jsx-dev-runtime.js",
+			"require"                  : "./dist/jsx-dev-runtime.js"
 		}
 	},
 	"scripts": {
