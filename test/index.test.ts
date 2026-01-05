@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// test/main.test.ts
+// test/index.test.ts
 //
 // Made with ❤️ by Maysara.
 

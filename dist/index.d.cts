@@ -1,52 +1,32 @@
 import { Signal } from '@minejs/signals';
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
-// src/types.d.ts
-//
-// Made with ❤️ by Maysara.
-
-
-
-// ╚══════════════════════════════════════════════════════════════════════════════════════╝
-
-
-
-// ╔════════════════════════════════════════ TYPE ════════════════════════════════════════╗
-
-    // JSX Runtime Types
-    type JSXElement          = Element | Text | DocumentFragment;
-    type ComponentFunction<P = any> = (props: P) => JSXElement | null;
-
-    interface JSXProps {
-        children?       : any;
-        ref?            : Signal<HTMLElement | null>;
-        [key: string]   : any;
-    }
-
-    // Render Types
-    interface RenderOptions {
-        root?           : HTMLElement;
-        mode?           : 'replace' | 'append' | 'prepend';
-        onMount?        : () => void;
-        onUnmount?      : () => void;
-    }
-
-    interface MountedComponent {
-        element         : Element | DocumentFragment;
-        unmount         : () => void;
-        update          : (newElement: JSXElement) => void;
-    }
-
-    // JSX Global Declarations
-    declare global {
-        namespace JSX {
-            type Element            = JSXElement;
-            type IntrinsicElements  = Record<string, any>;
-            interface ElementChildrenAttribute {
-                children: object;
-            }
+type JSXElement = Element | Text | DocumentFragment;
+type ComponentFunction<P = any> = (props: P) => JSXElement | null;
+interface JSXProps {
+    children?: any;
+    ref?: Signal<HTMLElement | null>;
+    [key: string]: any;
+}
+interface RenderOptions {
+    root?: HTMLElement;
+    mode?: 'replace' | 'append' | 'prepend';
+    onMount?: () => void;
+    onUnmount?: () => void;
+}
+interface MountedComponent {
+    element: Element | DocumentFragment;
+    unmount: () => void;
+    update: (newElement: JSXElement) => void;
+}
+declare global {
+    namespace JSX {
+        type Element = JSXElement;
+        type IntrinsicElements = Record<string, any>;
+        interface ElementChildrenAttribute {
+            children: object;
         }
     }
+}
 
 /**
  * Creates a DOM element from JSX

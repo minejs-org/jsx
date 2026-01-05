@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-// src/types.d.ts
+// src/types.ts
 //
 // Made with ❤️ by Maysara.
 
@@ -41,6 +41,7 @@
 
     // JSX Global Declarations
     declare global {
+        // eslint-disable-next-line @typescript-eslint/no-namespace
         namespace JSX {
             type Element            = JSXElement;
             type IntrinsicElements  = Record<string, any>;
