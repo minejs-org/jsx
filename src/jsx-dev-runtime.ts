@@ -1,6 +1,11 @@
 // src/jsx-dev-runtime.ts
 //
-// JSX Dev Runtime for automatic imports (React 17+ JSX transform - development mode)
-// This file is automatically imported by TypeScript in development mode
+// Made with ❤️ by Maysara.
 
-export { jsx as jsxDEV, jsxs, Fragment } from './mod/runtime';
+
+
+// ╔════════════════════════════════════════ PACK ════════════════════════════════════════╗
+
+    export { jsx as jsxDEV, jsxs, Fragment } from './index';
+
+// ╚══════════════════════════════════════════════════════════════════════════════════════╝
