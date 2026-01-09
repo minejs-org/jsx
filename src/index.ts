@@ -6,7 +6,8 @@
 
 // ╔════════════════════════════════════════ PACK ════════════════════════════════════════╗
 
-    export * from '@minejsx/render';
-    export * from '@minejsx/runtime';
+    export * from './types';
+    export * from './mod/render';
+    export * from './mod/runtime';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
