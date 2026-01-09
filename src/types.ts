@@ -47,6 +47,7 @@
             interface ElementChildrenAttribute {
                 children: object;
             }
+            type IntrinsicElements = Record<string, any>;
         }
     }
 
