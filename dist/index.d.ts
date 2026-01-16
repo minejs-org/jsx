@@ -80,4 +80,20 @@ declare function createRoot(container: HTMLElement | string): {
     unmount(): void;
 };
 
-export { ErrorBoundary, JSXElement, MountedComponent, RenderOptions, Suspense, Teleport, createPortal, createRoot, hydrate, isBrowser, lazy, mount, onDOMReady, queueUpdate, render };
+/**
+ * Minify HTML string by removing excess whitespace
+ * Collapses multiple spaces, tabs, and newlines into single spaces
+ * Removes leading/trailing whitespace from text nodes
+ * @param html - HTML string to minify
+ * @returns Minified HTML string
+ */
+declare function minifyHTML(html: string): string;
+/**
+ * Normalize a string value by removing excess whitespace
+ * Useful for class names, ids, and other attributes with multi-line definitions
+ * @param value - String value to normalize
+ * @returns Normalized string with collapsed whitespace
+ */
+declare function normalizeString(value: string): string;
+
+export { ErrorBoundary, JSXElement, MountedComponent, RenderOptions, Suspense, Teleport, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };

@@ -9,5 +9,6 @@
     export * from './types';
     export * from './mod/render';
     export * from './mod/runtime';
+    export * from './mod/utils';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝

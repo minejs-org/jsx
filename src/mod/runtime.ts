@@ -9,6 +9,7 @@
 
     import { effect, isSignal, type Signal } from '@minejs/signals';
     import type { JSXElement, JSXProps, ComponentFunction } from '../types';
+    import { normalizeString } from './utils';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -98,7 +99,9 @@
                 if (key in element) {
                     (element as any)[key] = value;
                 } else {
-                    element.setAttribute(key, String(value));
+                    // Normalize string attributes to remove excess whitespace
+                    const attrValue = typeof value === 'string' ? normalizeString(value) : String(value);
+                    element.setAttribute(key, attrValue);
                 }
             }
         }
@@ -177,12 +180,12 @@
             effect(() => {
                 const className = value();
                 if (className != null) {
-                    element.className = String(className);
+                    element.className = normalizeString(String(className));
                 }
             });
         } else if (value != null) {
             // Static className
-            element.className = String(value);
+            element.className = normalizeString(String(value));
         }
     }
 
