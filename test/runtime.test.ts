@@ -132,6 +132,55 @@
             expect(el.children[1].tagName).toBe('P');
         });
 
+        test('dangerouslySetInnerHTML with HTML string', () => {
+            const el = jsx('div', {
+                dangerouslySetInnerHTML: { __html: '<span>Injected</span>' }
+            }) as HTMLElement;
+
+            expect(el.innerHTML).toBe('<span>Injected</span>');
+            expect(el.querySelector('span')?.textContent).toBe('Injected');
+        });
+
+        test('dangerouslySetInnerHTML with SVG content', () => {
+            const svgContent = '<svg><circle cx="50" cy="50" r="40" /></svg>';
+            const el = jsx('div', {
+                dangerouslySetInnerHTML: { __html: svgContent }
+            }) as HTMLElement;
+
+            // Browser normalizes self-closing tags, so we check the content exists
+            expect(el.innerHTML).toContain('<circle');
+            expect(el.querySelector('svg')).toBeTruthy();
+            expect(el.querySelector('circle')).toBeTruthy();
+        });
+
+        test('dangerouslySetInnerHTML ignores children prop', () => {
+            const el = jsx('div', {
+                dangerouslySetInnerHTML: { __html: '<span>HTML</span>' },
+                children: 'Should be ignored'
+            }) as HTMLElement;
+
+            expect(el.innerHTML).toBe('<span>HTML</span>');
+            expect(el.textContent).toBe('HTML');
+        });
+
+        test('dangerouslySetInnerHTML with null value does nothing', () => {
+            const el = jsx('div', {
+                dangerouslySetInnerHTML: null,
+                children: 'Default content'
+            }) as HTMLElement;
+
+            expect(el.innerHTML).toContain('Default content');
+        });
+
+        test('dangerouslySetInnerHTML with invalid object does nothing', () => {
+            const el = jsx('div', {
+                dangerouslySetInnerHTML: { html: '<span>Wrong key</span>' },
+                children: 'Default content'
+            }) as HTMLElement;
+
+            expect(el.innerHTML).toContain('Default content');
+        });
+
         test('Fragment', () => {
             const frag = Fragment({
             children: [

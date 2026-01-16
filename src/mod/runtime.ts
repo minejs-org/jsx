@@ -69,11 +69,23 @@
     function createHTMLElement(type: string, props: JSXProps): Element {
         const element = document.createElement(type);
 
+        // Check if dangerouslySetInnerHTML is present and valid - it takes precedence over children
+        const hasValidDangerouslySetInnerHTML = 'dangerouslySetInnerHTML' in props 
+            && props.dangerouslySetInnerHTML != null 
+            && typeof props.dangerouslySetInnerHTML === 'object'
+            && '__html' in props.dangerouslySetInnerHTML
+            && typeof props.dangerouslySetInnerHTML.__html === 'string';
+
         // Set properties and attributes
         for (const [key, value] of Object.entries(props)) {
             if (key === 'children') {
-                // Handle children separately
-                appendChildren(element, value);
+                // Skip children if dangerouslySetInnerHTML is present and valid
+                if (!hasValidDangerouslySetInnerHTML) {
+                    appendChildren(element, value);
+                }
+            } else if (key === 'dangerouslySetInnerHTML') {
+                // Handle dangerouslySetInnerHTML - inject raw HTML
+                handleDangerouslySetInnerHTML(element as HTMLElement, value);
             } else if (key === 'ref') {
                 // Handle ref
                 handleRef(element as HTMLElement, value);
@@ -217,6 +229,20 @@
                     element.style.setProperty(cssKey, String(value));
                 }
             });
+        }
+    }
+
+    // ============================================================================
+    // DANGEROUSLY SET INNER HTML
+    // ============================================================================
+
+    function handleDangerouslySetInnerHTML(element: HTMLElement, value: any): void {
+        if (value != null && typeof value === 'object' && '__html' in value) {
+            // Extract __html property and inject as raw HTML
+            const html = value.__html;
+            if (typeof html === 'string') {
+                element.innerHTML = html;
+            }
         }
     }
 
