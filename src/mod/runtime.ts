@@ -94,8 +94,12 @@
                     element.setAttribute(key, '');
                 }
             } else if (value != null) {
-                // Handle static props
-                element.setAttribute(key, String(value));
+                // Handle static props - prefer property assignment for case-sensitive attrs (SVG)
+                if (key in element) {
+                    (element as any)[key] = value;
+                } else {
+                    element.setAttribute(key, String(value));
+                }
             }
         }
 
