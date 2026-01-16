@@ -229,12 +229,16 @@
             const value = signal();
 
             if (value != null) {
-                if (key in element) {
+                if (key === 'className' || key === 'class') {
+                    // Normalize className/class for reactive props
+                    element.className = normalizeString(String(value));
+                } else if (key in element) {
                     // Set as property (for input.value, etc)
                     ; (element as any)[key] = value;
                 } else {
-                    // Set as attribute
-                    element.setAttribute(key, String(value));
+                    // Set as attribute, normalize if string
+                    const attrValue = typeof value === 'string' ? normalizeString(value) : String(value);
+                    element.setAttribute(key, attrValue);
                 }
             } else {
                 element.removeAttribute(key);

@@ -14,7 +14,6 @@
      * @returns Minified HTML string
      */
     export function minifyHTML(html: string): string {
-        console.log('Minifying HTML...');
         // Collapse multiple whitespace characters (spaces, tabs, newlines) into single space
         return html
             .replace(/\s+/g, ' ')           // Replace multiple whitespace with single space
