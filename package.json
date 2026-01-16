@@ -1,6 +1,6 @@
 {
 	"name"                             : "@minejs/jsx",
-	"version"                          : "0.1.2",
+	"version"                          : "0.1.3",
 	"description"                      : "Lightweight JSX runtime with fine-grained reactivity.",
 	"keywords"                         : [
 		"minejs",

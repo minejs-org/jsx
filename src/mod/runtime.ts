@@ -66,12 +66,49 @@
     // HTML ELEMENT CREATION
     // ============================================================================
 
+    // SVG elements that need to be created with createElementNS
+    const SVG_ELEMENTS = new Set([
+        'svg', 'path', 'circle', 'rect', 'line', 'polyline', 'polygon',
+        'ellipse', 'g', 'text', 'tspan', 'defs', 'clipPath', 'linearGradient',
+        'radialGradient', 'stop', 'mask', 'pattern', 'image', 'use', 'symbol',
+        'marker', 'foreignObject', 'animate', 'animateTransform', 'animateMotion',
+        'set', 'filter', 'feBlend', 'feColorMatrix', 'feComponentTransfer',
+        'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap',
+        'feDistantLight', 'feFlood', 'feFuncA', 'feFuncB', 'feFuncG', 'feFuncR',
+        'feGaussianBlur', 'feImage', 'feMerge', 'feMergeNode', 'feMorphology',
+        'feOffset', 'fePointLight', 'feSpecularLighting', 'feSpotLight', 'feTile',
+        'feTurbulence', 'title', 'desc', 'metadata'
+    ]);
+
+    // MathML elements that need to be created with createElementNS
+    const MATHML_ELEMENTS = new Set([
+        'math', 'maction', 'maligngroup', 'malignmark', 'menclose', 'merror',
+        'mfenced', 'mfrac', 'mglyph', 'mi', 'mlabeledtr', 'mlongdiv',
+        'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom',
+        'mroot', 'mrow', 'ms', 'mscarries', 'mscarry', 'msgroup', 'msline',
+        'mspace', 'msqrt', 'msrow', 'mstack', 'mstyle', 'msub', 'msup',
+        'msubsup', 'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover',
+        'semantics', 'annotation', 'annotation-xml'
+    ]);
+
+    const SVG_NAMESPACE = 'http://www.w3.org/2000/svg';
+    const MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
+
     function createHTMLElement(type: string, props: JSXProps): Element {
-        const element = document.createElement(type);
+        // Determine namespace and create element appropriately
+        let element: Element;
+
+        if (SVG_ELEMENTS.has(type)) {
+            element = document.createElementNS(SVG_NAMESPACE, type);
+        } else if (MATHML_ELEMENTS.has(type)) {
+            element = document.createElementNS(MATHML_NAMESPACE, type);
+        } else {
+            element = document.createElement(type);
+        }
 
         // Check if dangerouslySetInnerHTML is present and valid - it takes precedence over children
-        const hasValidDangerouslySetInnerHTML = 'dangerouslySetInnerHTML' in props 
-            && props.dangerouslySetInnerHTML != null 
+        const hasValidDangerouslySetInnerHTML = 'dangerouslySetInnerHTML' in props
+            && props.dangerouslySetInnerHTML != null
             && typeof props.dangerouslySetInnerHTML === 'object'
             && '__html' in props.dangerouslySetInnerHTML
             && typeof props.dangerouslySetInnerHTML.__html === 'string';
@@ -107,13 +144,19 @@
                     element.setAttribute(key, '');
                 }
             } else if (value != null) {
-                // Handle static props - prefer property assignment for case-sensitive attrs (SVG)
-                if (key in element) {
-                    (element as any)[key] = value;
-                } else {
-                    // Normalize string attributes to remove excess whitespace
+                // Handle static props
+                // For SVG/MathML elements, always use setAttribute to preserve case sensitivity
+                if (SVG_ELEMENTS.has(type) || MATHML_ELEMENTS.has(type)) {
                     const attrValue = typeof value === 'string' ? normalizeString(value) : String(value);
                     element.setAttribute(key, attrValue);
+                } else {
+                    // For HTML elements, prefer property assignment
+                    if (key in element) {
+                        (element as any)[key] = value;
+                    } else {
+                        const attrValue = typeof value === 'string' ? normalizeString(value) : String(value);
+                        element.setAttribute(key, attrValue);
+                    }
                 }
             }
         }
