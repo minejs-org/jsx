@@ -29,6 +29,7 @@
     global.Text             = dom.window.Text;
     global.DocumentFragment = dom.window.DocumentFragment;
     global.Node             = dom.window.Node;
+    global.MutationObserver = dom.window.MutationObserver;
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -179,6 +180,42 @@
             }) as HTMLElement;
 
             expect(el.innerHTML).toContain('Default content');
+        });
+
+        test('triggers onload when element is added to DOM', async () => {
+            let loaded = false;
+            const el = jsx('div', {
+                onload: () => { loaded = true; },
+                children: 'Loaded content'
+            }) as Element;
+
+            expect(loaded).toBe(false);
+            document.body.appendChild(el);
+
+            // Wait for MutationObserver
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            expect(loaded).toBe(true);
+        });
+
+        test('triggers onload for nested elements', async () => {
+            let parentLoaded = false;
+            let childLoaded = false;
+
+            const el = jsx('div', {
+                onload: () => { parentLoaded = true; },
+                children: jsx('span', {
+                    onload: () => { childLoaded = true; },
+                    children: 'Child'
+                })
+            }) as Element;
+
+            document.body.appendChild(el);
+
+            await new Promise(resolve => setTimeout(resolve, 100));
+
+            expect(parentLoaded).toBe(true);
+            expect(childLoaded).toBe(true);
         });
 
         test('Fragment', () => {

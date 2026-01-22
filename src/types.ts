@@ -37,6 +37,7 @@
     export interface JSXProps {
         children?       : any;
         ref?            : Signal<HTMLElement | null>;
+        onload?         : () => void;
         [key: string]   : any;
     }
 

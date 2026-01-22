@@ -16,6 +16,7 @@ type ComponentFunction<P = any> = (props: P) => JSXElement | null;
 interface JSXProps {
     children?: any;
     ref?: Signal<HTMLElement | null>;
+    onload?: () => void;
     [key: string]: any;
 }
 declare global {

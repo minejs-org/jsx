@@ -126,6 +126,9 @@
             } else if (key === 'ref') {
                 // Handle ref
                 handleRef(element as HTMLElement, value);
+            } else if (key === 'onload') {
+                // Handle onload
+                handleOnLoad(element, value);
             } else if (key.startsWith('on')) {
                 // Handle events (onClick, onInput, etc)
                 handleEvent(element, key, value);
@@ -198,6 +201,56 @@
         }
 
         return [children];
+    }
+
+    // ============================================================================
+    // ONLOAD HANDLING
+    // ============================================================================
+
+    const onLoadMap = new WeakMap<Element, () => void>();
+    const ONLOAD_ATTR = 'data-mine-onload';
+    let observer: MutationObserver | null = null;
+
+    function initObserver() {
+        if (observer) return;
+        if (typeof MutationObserver === 'undefined') return;
+
+        observer = new MutationObserver((mutations) => {
+            mutations.forEach(mutation => {
+                mutation.addedNodes.forEach(node => {
+                    if (node.nodeType === 1) { // Node.ELEMENT_NODE
+                        checkOnLoad(node as Element);
+                    }
+                });
+            });
+        });
+
+        observer.observe(document, {
+            childList: true,
+            subtree: true
+        });
+    }
+
+    function checkOnLoad(element: Element) {
+        if (element.hasAttribute(ONLOAD_ATTR)) {
+            const cb = onLoadMap.get(element);
+            if (cb) cb();
+        }
+
+        // Check descendants
+        const descendants = element.querySelectorAll(`[${ONLOAD_ATTR}]`);
+        descendants.forEach(descendant => {
+            const cb = onLoadMap.get(descendant);
+            if (cb) cb();
+        });
+    }
+
+    function handleOnLoad(element: Element, callback: any): void {
+        if (typeof callback !== 'function') return;
+
+        onLoadMap.set(element, callback);
+        element.setAttribute(ONLOAD_ATTR, 'true');
+        initObserver();
     }
 
     // ============================================================================

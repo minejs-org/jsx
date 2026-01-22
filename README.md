@@ -8,10 +8,10 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/badge/v-0.1.4-black"/>
+    <img src="https://img.shields.io/badge/v-0.1.5-black"/>
     <img src="https://img.shields.io/badge/🔥-@minejs-black"/>
     <br>
-    <img src="https://img.shields.io/badge/coverage-98.78%25-brightgreen" alt="Test Coverage" />
+    <img src="https://img.shields.io/badge/coverage-91.43%25-brightgreen" alt="Test Coverage" />
     <img src="https://img.shields.io/github/issues/minejs-org/jsx?style=flat" alt="Github Repo Issues" />
     <img src="https://img.shields.io/github/stars/minejs-org/jsx?style=social" alt="GitHub Repo stars" />
 </div>
@@ -87,6 +87,17 @@
                 children: 'Increment',
                 onClick: () => {
                     counter.set(counter() + 1)
+                }
+            })
+            ```
+
+        - ### 4. Lifecycle Events
+
+            ```typescript
+            const el = jsx('div', {
+                children: 'I notify when I appear!',
+                onload: () => {
+                    console.log('Element added to DOM!')
                 }
             })
             ```
