@@ -283,17 +283,26 @@
     // ============================================================================
 
     function handleClassName(element: Element, value: any): void {
+        const setClass = (val: string) => {
+            const cleaned = cleanClassName(String(val));
+            if (element.namespaceURI === SVG_NAMESPACE) {
+                element.setAttribute('class', cleaned);
+            } else {
+                element.className = cleaned;
+            }
+        };
+
         if (isSignal(value)) {
             // Reactive className
             effect(() => {
                 const className = value();
                 if (className != null) {
-                    element.className = cleanClassName(String(className));
+                    setClass(String(className));
                 }
             });
         } else if (value != null) {
             // Static className
-            element.className = cleanClassName(String(value));
+            setClass(String(value));
         }
     }
 
@@ -351,10 +360,7 @@
             const value = signal();
 
             if (value != null) {
-                if (key === 'className' || key === 'class') {
-                    // Normalize className/class for reactive props
-                    element.className = normalizeString(String(value));
-                } else if (key in element) {
+                if (key in element) {
                     // Set as property (for input.value, etc)
                     ; (element as any)[key] = value;
                 } else {

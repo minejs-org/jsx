@@ -8,7 +8,7 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/badge/v-0.1.7-black"/>
+    <img src="https://img.shields.io/badge/v-0.1.8-black"/>
     <img src="https://img.shields.io/badge/🔥-@minejs-black"/>
     <br>
     <img src="https://img.shields.io/badge/coverage-91.43%25-brightgreen" alt="Test Coverage" />
