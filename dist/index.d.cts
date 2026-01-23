@@ -95,5 +95,11 @@ declare function minifyHTML(html: string): string;
  * @returns Normalized string with collapsed whitespace
  */
 declare function normalizeString(value: string): string;
+/**
+ * Clean up class names by removing duplicates and keeping the latest one
+ * @param value - Class name string
+ * @returns Cleaned class name string
+ */
+declare function cleanClassName(value: string): string;
 
-export { ErrorBoundary, JSXElement, MountedComponent, RenderOptions, Suspense, Teleport, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
+export { ErrorBoundary, JSXElement, MountedComponent, RenderOptions, Suspense, Teleport, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };

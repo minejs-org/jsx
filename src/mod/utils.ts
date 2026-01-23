@@ -33,4 +33,30 @@
             .trim();                 // Remove leading/trailing whitespace
     }
 
+    /**
+     * Clean up class names by removing duplicates and keeping the latest one
+     * @param value - Class name string
+     * @returns Cleaned class name string
+     */
+    export function cleanClassName(value: string): string {
+        const tokens = value.trim().split(/\s+/);
+        // optimization: if 0 or 1 token, just return trimmed
+        if (tokens.length <= 1 && tokens[0] === '') return '';
+        if (tokens.length === 1) return tokens[0];
+
+        const seen = new Set<string>();
+        const result: string[] = [];
+
+        // Iterate backwards to keep latest
+        for (let i = tokens.length - 1; i >= 0; i--) {
+            const token = tokens[i];
+            if (token && !seen.has(token)) {
+                seen.add(token);
+                result.push(token);
+            }
+        }
+
+        return result.reverse().join(' ');
+    }
+
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝

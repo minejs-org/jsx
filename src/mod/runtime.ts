@@ -9,7 +9,7 @@
 
     import { effect, isSignal, type Signal } from '@minejs/signals';
     import type { JSXElement, JSXProps, ComponentFunction } from '../types';
-    import { normalizeString } from './utils';
+    import { normalizeString, cleanClassName } from './utils';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -288,12 +288,12 @@
             effect(() => {
                 const className = value();
                 if (className != null) {
-                    element.className = normalizeString(String(className));
+                    element.className = cleanClassName(String(className));
                 }
             });
         } else if (value != null) {
             // Static className
-            element.className = normalizeString(String(value));
+            element.className = cleanClassName(String(value));
         }
     }
 
