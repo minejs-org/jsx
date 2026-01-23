@@ -96,7 +96,8 @@ declare function minifyHTML(html: string): string;
  */
 declare function normalizeString(value: string): string;
 /**
- * Clean up class names by removing duplicates and keeping the latest one
+ * Clean up class names by removing duplicates and keeping the latest one.
+ * Handles conflict groups (e.g., 'justify-start' overrides 'justify-center').
  * @param value - Class name string
  * @returns Cleaned class name string
  */
