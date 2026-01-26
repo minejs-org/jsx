@@ -1,5 +1,5 @@
-import { J as JSXElement, R as RenderOptions, M as MountedComponent, O as OverlayPosition } from './jsx-dev-runtime-C8Et6jKR.js';
-export { C as ComponentFunction, d as ContainerAlign, N as ContainerAnimateDelay, L as ContainerAnimateDuration, P as ContainerAnimateEase, Q as ContainerAnimateFill, K as ContainerAnimation, a as ContainerAs, q as ContainerBg, s as ContainerBorderColor, t as ContainerBorderStyle, u as ContainerBorderWidth, z as ContainerCursor, c as ContainerDirection, b as ContainerDisplay, j as ContainerFraction, f as ContainerGap, n as ContainerHeight, e as ContainerJustify, p as ContainerMaxHeight, l as ContainerMaxWidth, o as ContainerMinHeight, m as ContainerMinWidth, y as ContainerOverflow, B as ContainerPointerEvents, x as ContainerPosition, S as ContainerProps, v as ContainerRadius, D as ContainerResize, i as ContainerScale, w as ContainerShadow, g as ContainerSpace, h as ContainerSpaceOrAuto, G as ContainerTextAlign, r as ContainerTextColor, E as ContainerTextSize, I as ContainerTextTransform, F as ContainerTextWeight, H as ContainerTextWrap, A as ContainerUserSelect, k as ContainerWidth, a0 as For, W as Fragment, T as JSXProps, _ as Show, $ as Switch, X as component, Z as createElements, Y as defineComponent, U as jsx, V as jsxs } from './jsx-dev-runtime-C8Et6jKR.js';
+import { J as JSXElement, R as RenderOptions, M as MountedComponent, O as OverlayPosition, C as ContainerBg } from './jsx-dev-runtime-BKXZw55t.js';
+export { a as ComponentFunction, e as ContainerAlign, N as ContainerAnimateDelay, L as ContainerAnimateDuration, P as ContainerAnimateEase, Q as ContainerAnimateFill, K as ContainerAnimation, b as ContainerAs, s as ContainerBorderColor, t as ContainerBorderStyle, u as ContainerBorderWidth, z as ContainerCursor, d as ContainerDirection, c as ContainerDisplay, k as ContainerFraction, g as ContainerGap, o as ContainerHeight, f as ContainerJustify, q as ContainerMaxHeight, m as ContainerMaxWidth, p as ContainerMinHeight, n as ContainerMinWidth, y as ContainerOverflow, B as ContainerPointerEvents, x as ContainerPosition, S as ContainerProps, v as ContainerRadius, D as ContainerResize, j as ContainerScale, w as ContainerShadow, h as ContainerSpace, i as ContainerSpaceOrAuto, G as ContainerTextAlign, r as ContainerTextColor, E as ContainerTextSize, I as ContainerTextTransform, F as ContainerTextWeight, H as ContainerTextWrap, A as ContainerUserSelect, l as ContainerWidth, a0 as For, W as Fragment, T as JSXProps, _ as Show, $ as Switch, X as component, Z as createElements, Y as defineComponent, U as jsx, V as jsxs } from './jsx-dev-runtime-BKXZw55t.js';
 import '@minejs/signals';
 
 /**
@@ -186,4 +186,13 @@ interface TextProps {
  */
 declare function Text(props: TextProps): JSXElement;
 
-export { Divider, type DividerProps, ErrorBoundary, JSXElement, MountedComponent, Overlay, OverlayPosition, type OverlayProps, RenderOptions, Suspense, Teleport, Text, type TextProps, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
+interface BgKitProps {
+    opacity?: number;
+    bgColor: ContainerBg;
+    className?: string;
+    style?: any;
+    [key: string]: any;
+}
+declare function BgKit(props: BgKitProps): JSXElement;
+
+export { BgKit, type BgKitProps, ContainerBg, Divider, type DividerProps, ErrorBoundary, JSXElement, MountedComponent, Overlay, OverlayPosition, type OverlayProps, RenderOptions, Suspense, Teleport, Text, type TextProps, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
