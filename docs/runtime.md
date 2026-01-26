@@ -115,6 +115,25 @@
                 bg: 'white',     // bg-white
                 shadow: 'md',    // shadow-md
                 radius: 'lg',    // rounded-lg
+
+                // Extended Border Styling
+                border: 2,
+                borderStyle: 'dashed', // solid | dashed | dotted | double | groove | ridge | inset | hidden | none
+                borderColor: 'brand',  // brand | success | warning | error | c1 | c2 | c3 | current | transparent
+
+                // Interaction Control
+                cursor: 'pointer',     // auto | default | pointer | wait | text | move | help | not-allowed | none | grab | grabbing
+                select: 'none',        // none | text | all | auto
+                pointerEvents: 'none', // none | auto
+                resize: 'both',        // none | both | y | x
+
+                // Animation
+                animate: 'spin',       // none | spin | ping | pulse | bounce | fade-in | fade-out | slide-in-up | slide-in-down | ...
+                animateDuration: 500,  // 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000
+                animateDelay: 200,     // 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000
+                animateEase: 'in-out', // linear | in | out | in-out
+                animateFill: 'forwards', // forwards | backwards | both | none
+
                 children: [
                     jsx('h2', {
                         children: 'Title',

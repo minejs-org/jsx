@@ -118,11 +118,78 @@
             expect(el.className).toContain('rounded-lg');
         });
 
+        test('handles extended border styles', () => {
+            // Test all border style variants
+            const styles = [
+                'solid', 'dashed', 'dotted', 'double', 'groove', 
+                'ridge', 'inset', 'hidden', 'none'
+            ] as const;
+
+            styles.forEach(style => {
+                const el = jsx('div', { borderStyle: style }) as HTMLElement;
+                expect(el.className).toContain(`border-${style}`);
+            });
+        });
+
+        test('handles extended border colors', () => {
+            const el1 = jsx('div', { borderColor: 'c1' }) as HTMLElement;
+            expect(el1.className).toContain('border-c1');
+
+            const el2 = jsx('div', { borderColor: 'c2' }) as HTMLElement;
+            expect(el2.className).toContain('border-c2');
+
+            const el3 = jsx('div', { borderColor: 'c3' }) as HTMLElement;
+            expect(el3.className).toContain('border-c3');
+        });
+
+        test('handles interaction props', () => {
+            // Cursor
+            const elCursor = jsx('div', { cursor: 'pointer' }) as HTMLElement;
+            expect(elCursor.className).toContain('cursor-pointer');
+
+            const elCursorGrab = jsx('div', { cursor: 'grab' }) as HTMLElement;
+            expect(elCursorGrab.className).toContain('cursor-grab');
+
+            // User Select
+            const elSelect = jsx('div', { select: 'none' }) as HTMLElement;
+            expect(elSelect.className).toContain('select-none');
+
+            // Pointer Events
+            const elEvents = jsx('div', { pointerEvents: 'none' }) as HTMLElement;
+            expect(elEvents.className).toContain('pointer-events-none');
+
+            // Resize
+            const elResize = jsx('div', { resize: 'both' }) as HTMLElement;
+            expect(elResize.className).toContain('resize');
+            
+            const elResizeY = jsx('div', { resize: 'y' }) as HTMLElement;
+            expect(elResizeY.className).toContain('resize-y');
+        });
+
+        test('handles animation props', () => {
+            const el = jsx('div', {
+                animate: 'spin',
+                animateDuration: 500,
+                animateDelay: 200,
+                animateEase: 'in-out',
+                animateFill: 'forwards'
+            }) as HTMLElement;
+
+            expect(el.className).toContain('animate-spin');
+            expect(el.className).toContain('animate-duration-500');
+            expect(el.className).toContain('animate-delay-200');
+            expect(el.className).toContain('animate-ease-in-out');
+            expect(el.className).toContain('animate-fill-forwards');
+        });
+
         test('handles shadow and position', () => {
             const el = jsx('div', { shadow: 'md', position: 'absolute', zIndex: 10 }) as HTMLElement;
             expect(el.className).toContain('shadow-md');
             expect(el.className).toContain('absolute');
             expect(el.className).toContain('z-10');
+
+            const el2 = jsx('div', { shadow: '2xl' }) as HTMLElement;
+            expect(el2.className).toContain('shadow-2xl');
         });
 
         test('does not apply container props to SVG elements', () => {

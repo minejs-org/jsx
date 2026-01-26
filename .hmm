@@ -5,7 +5,7 @@
 	"repo"              : {
 		"org"           : "minejs",
 		"name"          : "jsx",
-		"version"       : "0.2.5",
+		"version"       : "0.2.6",
 		"desc"          : "Lightweight JSX runtime with fine-grained reactivity.",
 		"kw"            : [
 			"minejs",

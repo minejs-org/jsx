@@ -53,12 +53,24 @@
     export type ContainerMaxHeight = 'none' | 'full' | 'screen' | 'min' | 'max' | 'fit' | ContainerScale | (string & {}) | number;
     export type ContainerBg = 'page' | 'surface' | 'raised' | 'brand' | 'brand-subtle' | 'success' | 'success-subtle' | 'warning' | 'warning-subtle' | 'error' | 'error-subtle' | 'info' | 'info-subtle' | 'current' | 'transparent';
     export type ContainerTextColor = '1' | '2' | '3' | '4' | 'inverse' | 'brand' | 'success' | 'warning' | 'error' | 'info' | 'current' | 'transparent';
-    export type ContainerBorderColor = '1' | '2' | '3' | 'brand' | 'success' | 'warning' | 'error' | 'current' | 'transparent';
+    export type ContainerBorderColor = '1' | '2' | '3' | 'c1' | 'c2' | 'c3' | 'brand' | 'success' | 'warning' | 'error' | 'current' | 'transparent';
+    export type ContainerBorderStyle = 'solid' | 'dashed' | 'dotted' | 'double' | 'groove' | 'ridge' | 'inset' | 'hidden' | 'none';
     export type ContainerBorderWidth = 0 | 1 | 2 | 4 | 8;
     export type ContainerRadius      = 'none' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
     export type ContainerShadow      = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'inner';
     export type ContainerPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
     export type ContainerOverflow = 'visible' | 'hidden' | 'scroll' | 'auto';
+    export type ContainerCursor = 'auto' | 'default' | 'pointer' | 'wait' | 'text' | 'move' | 'help' | 'not-allowed' | 'none' | 'grab' | 'grabbing';
+    export type ContainerUserSelect = 'none' | 'text' | 'all' | 'auto';
+    export type ContainerPointerEvents = 'none' | 'auto';
+    export type ContainerResize = 'none' | 'both' | 'y' | 'x';
+
+    // Animation Types
+    export type ContainerAnimation = 'none' | 'spin' | 'ping' | 'pulse' | 'bounce' | 'fade-in' | 'fade-out' | 'slide-in-up' | 'slide-in-down' | 'slide-in-left' | 'slide-in-right' | 'zoom-in' | 'zoom-out';
+    export type ContainerAnimateDuration = 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
+    export type ContainerAnimateDelay = 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
+    export type ContainerAnimateEase = 'linear' | 'in' | 'out' | 'in-out';
+    export type ContainerAnimateFill = 'forwards' | 'backwards' | 'both' | 'none';
 
     // Overlay Types
     export type OverlayPosition =
@@ -84,9 +96,16 @@
         gapX?: ContainerGap;
         gapY?: ContainerGap;
 
+        // Flex Item
+        grow?: boolean | number;
+        shrink?: boolean | number;
+        basis?: string | number;
+        order?: number;
+
         // Sizing
         w?: ContainerWidth;
         h?: ContainerHeight;
+        size?: ContainerWidth; // Sets both w and h
         minW?: ContainerMinWidth;
         minH?: ContainerMinHeight;
         maxW?: ContainerMaxWidth;
@@ -114,13 +133,29 @@
         bg?: ContainerBg;
         color?: ContainerTextColor;
         border?: ContainerBorderWidth;
+        borderStyle?: ContainerBorderStyle;
         borderColor?: ContainerBorderColor;
         radius?: ContainerRadius;
         shadow?: ContainerShadow;
+        opacity?: number;
 
         // Positioning / overflow
         position?: ContainerPosition;
         overflow?: ContainerOverflow;
+        divider?: boolean | 'horizontal' | 'vertical';
+
+        // Interaction
+        cursor?: ContainerCursor;
+        select?: ContainerUserSelect;
+        pointerEvents?: ContainerPointerEvents;
+        resize?: ContainerResize;
+
+        // Animation
+        animate?: ContainerAnimation;
+        animateDuration?: ContainerAnimateDuration;
+        animateDelay?: ContainerAnimateDelay;
+        animateEase?: ContainerAnimateEase;
+        animateFill?: ContainerAnimateFill;
 
         // Overlay
         overlay?: boolean;

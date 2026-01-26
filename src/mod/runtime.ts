@@ -172,6 +172,11 @@
         // Resolve container props (style props)
         const { className: containerClass, style: containerStyle } = resolveStyleProps(props);
 
+        // Auto-set role for divider
+        if (props.divider && !props.role) {
+            element.setAttribute('role', 'separator');
+        }
+
         // Apply container styles immediately (as base)
         if (containerStyle && !SVG_ELEMENTS.has(type) && !MATHML_ELEMENTS.has(type)) {
             applyStyles(element as HTMLElement, containerStyle);

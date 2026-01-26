@@ -11,7 +11,16 @@ import type {
     ContainerShadow,
     ContainerSpace,
     ContainerSpaceOrAuto,
-    OverlayPosition
+    OverlayPosition,
+    ContainerCursor,
+    ContainerUserSelect,
+    ContainerPointerEvents,
+    ContainerResize,
+    ContainerAnimation,
+    ContainerAnimateDuration,
+    ContainerAnimateDelay,
+    ContainerAnimateEase,
+    ContainerAnimateFill
 } from '../types';
 
 // ╔════════════════════════════════════════ MAPS ════════════════════════════════════════╗
@@ -108,7 +117,83 @@ const shadowClassMap: Record<ContainerShadow, string> = {
     md: 'shadow-md',
     lg: 'shadow-lg',
     xl: 'shadow-xl',
+    '2xl': 'shadow-2xl',
     inner: 'shadow-inner'
+};
+
+const borderStyleClassMap: Record<string, string> = {
+    solid: 'border-solid',
+    dashed: 'border-dashed',
+    dotted: 'border-dotted',
+    double: 'border-double',
+    groove: 'border-groove',
+    ridge: 'border-ridge',
+    inset: 'border-inset',
+    hidden: 'border-hidden',
+    none: 'border-none'
+};
+
+const cursorClassMap: Record<ContainerCursor, string> = {
+    auto: 'cursor-auto',
+    default: 'cursor-default',
+    pointer: 'cursor-pointer',
+    wait: 'cursor-wait',
+    text: 'cursor-text',
+    move: 'cursor-move',
+    help: 'cursor-help',
+    'not-allowed': 'cursor-not-allowed',
+    none: 'cursor-none',
+    grab: 'cursor-grab',
+    grabbing: 'cursor-grabbing'
+};
+
+const selectClassMap: Record<ContainerUserSelect, string> = {
+    none: 'select-none',
+    text: 'select-text',
+    all: 'select-all',
+    auto: 'select-auto'
+};
+
+const pointerEventsClassMap: Record<ContainerPointerEvents, string> = {
+    none: 'pointer-events-none',
+    auto: 'pointer-events-auto'
+};
+
+const resizeClassMap: Record<ContainerResize, string> = {
+    none: 'resize-none',
+    both: 'resize',
+    y: 'resize-y',
+    x: 'resize-x'
+};
+
+const animateClassMap: Record<ContainerAnimation, string> = {
+    none: 'animate-none',
+    spin: 'animate-spin',
+    ping: 'animate-ping',
+    pulse: 'animate-pulse',
+    bounce: 'animate-bounce',
+    'fade-in': 'animate-fade-in',
+    'fade-out': 'animate-fade-out',
+    'slide-in-up': 'animate-slide-in-up',
+    'slide-in-down': 'animate-slide-in-down',
+    'slide-in-left': 'animate-slide-in-left',
+    'slide-in-right': 'animate-slide-in-right',
+    'zoom-in': 'animate-zoom-in',
+    'zoom-out': 'animate-zoom-out'
+};
+
+const animateEaseClassMap: Record<ContainerAnimateEase, string> = {
+    linear: 'animate-ease-linear',
+    in: 'animate-ease-in',
+    out: 'animate-ease-out',
+    'in-out': 'animate-ease-in-out'
+};
+
+const animateFillClassMap: Record<ContainerAnimateFill, string> = {
+    forwards: 'animate-fill-forwards',
+    backwards: 'animate-fill-backwards',
+    both: 'animate-fill-both',
+    none: 'animate-fill-none'
 };
 
 // ╔════════════════════════════════════════ HELP ════════════════════════════════════════╗
@@ -192,13 +277,17 @@ const resolveSize = (
 
 export const STYLE_PROPS = new Set([
     'display', 'direction', 'align', 'justify', 'wrap',
+    'grow', 'shrink', 'basis', 'order',
     'gap', 'gapX', 'gapY',
-    'w', 'h', 'minW', 'minH', 'maxW', 'maxH',
+    'w', 'h', 'size', 'minW', 'minH', 'maxW', 'maxH',
     'p', 'px', 'py', 'ps', 'pe', 'pt', 'pb',
     'm', 'mx', 'my', 'ms', 'me', 'mt', 'mb',
-    'bg', 'color', 'border', 'borderColor', 'radius', 'shadow',
+    'bg', 'color', 'border', 'borderStyle', 'borderColor', 'radius', 'shadow', 'opacity',
     'position', 'overflow', 'zIndex',
-    'overlay', 'location', 'backdrop'
+    'overlay', 'location', 'backdrop',
+    'divider',
+    'cursor', 'select', 'pointerEvents', 'resize',
+    'animate', 'animateDuration', 'animateDelay', 'animateEase', 'animateFill'
 ]);
 
 export function resolveStyleProps(props: ContainerProps): { className: string; style: any } {
@@ -208,11 +297,16 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         align,
         justify,
         wrap,
+        grow,
+        shrink,
+        basis,
+        order,
         gap,
         gapX,
         gapY,
         w,
         h,
+        size,
         minW,
         minH,
         maxW,
@@ -234,19 +328,33 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         bg,
         color,
         border,
+        borderStyle,
         borderColor,
         radius,
         shadow,
+        opacity,
         position,
         overflow,
         zIndex,
         overlay,
         location,
         backdrop,
+        divider,
+        cursor,
+        select,
+        pointerEvents,
+        resize,
+        animate,
+        animateDuration,
+        animateDelay,
+        animateEase,
+        animateFill
     } = props;
 
-    const wRes = resolveSize('w', w);
-    const hRes = resolveSize('h', h);
+    const sizeWRes = resolveSize('w', size);
+    const sizeHRes = resolveSize('h', size);
+    const wRes = resolveSize('w', w) || sizeWRes;
+    const hRes = resolveSize('h', h) || sizeHRes;
     const minWRes = resolveSize('min-w', minW);
     const minHRes = resolveSize('min-h', minH);
     const maxWRes = resolveSize('max-w', maxW, maxWidthClassMap);
@@ -259,6 +367,10 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         ...minHRes?.style,
         ...maxWRes?.style,
         ...maxHRes?.style,
+        ...(basis && typeof basis === 'string' && !['auto', 'full'].includes(basis) ? { flexBasis: basis } : {}),
+        ...(order !== undefined ? { order } : {}),
+        ...(grow !== undefined && typeof grow === 'number' ? { flexGrow: grow } : {}),
+        ...(shrink !== undefined && typeof shrink === 'number' ? { flexShrink: shrink } : {}),
         ...(overlay && backdrop ? { backgroundColor: 'rgba(0, 0, 0, 0.5)' } : {})
     };
 
@@ -274,6 +386,13 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         align && alignClassMap[align],
         justify && justifyClassMap[justify],
         wrap && 'flex-wrap',
+        
+        grow === true && 'grow',
+        grow === false && 'grow-0',
+        shrink === true && 'shrink',
+        shrink === false && 'shrink-0',
+        basis && typeof basis === 'string' && ['auto', 'full'].includes(basis) && `basis-${basis}`,
+
         gap !== undefined && `gap-${gap}`,
         gapX !== undefined && `gap-x-${gapX}`,
         gapY !== undefined && `gap-y-${gapY}`,
@@ -300,12 +419,32 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         bg && `bg-${bg}`,
         color && `text-${color}`,
         border !== undefined && borderWidthClassMap[border],
+        borderStyle && borderStyleClassMap[borderStyle],
         borderColor && `border-${borderColor}`,
         radius && radiusClassMap[radius],
         shadow && shadowClassMap[shadow],
+        opacity !== undefined && `opacity-${opacity}`,
         position,
         overflow && `overflow-${overflow}`,
         zIndex && `z-${zIndex}`,
+
+        // Interaction
+        cursor && cursorClassMap[cursor],
+        select && selectClassMap[select],
+        pointerEvents && pointerEventsClassMap[pointerEvents],
+        resize && resizeClassMap[resize],
+
+        // Animation
+        animate && animateClassMap[animate],
+        animateDuration && `animate-duration-${animateDuration}`,
+        animateDelay && `animate-delay-${animateDelay}`,
+        animateEase && animateEaseClassMap[animateEase],
+        animateFill && animateFillClassMap[animateFill],
+
+        // Divider logic
+        divider === true && 'border-t',
+        divider === 'horizontal' && 'border-t',
+        divider === 'vertical' && 'border-s', // border-start
     ]
         .filter(Boolean)
         .join(' ');
