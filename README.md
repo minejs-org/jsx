@@ -8,10 +8,10 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/badge/v-0.2.0-black"/>
+    <img src="https://img.shields.io/badge/v-0.2.1-black"/>
     <img src="https://img.shields.io/badge/🔥-@minejs-black"/>
     <br>
-    <img src="https://img.shields.io/badge/coverage-97.65%25-brightgreen" alt="Test Coverage" />
+    <img src="https://img.shields.io/badge/coverage-97.91%25-brightgreen" alt="Test Coverage" />
     <img src="https://img.shields.io/github/issues/minejs-org/jsx?style=flat" alt="Github Repo Issues" />
     <img src="https://img.shields.io/github/stars/minejs-org/jsx?style=social" alt="GitHub Repo stars" />
 </div>
@@ -115,6 +115,14 @@
                 shadow: 'md',   // box-shadow
                 radius: 'lg',   // border-radius
                 children: 'Beautiful Card'
+            })
+
+            // Create Overlay
+            const modal = jsx('div', {
+                overlay: true,
+                backdrop: true,
+                location: 'center',
+                children: 'Modal Content'
             })
             ```
 

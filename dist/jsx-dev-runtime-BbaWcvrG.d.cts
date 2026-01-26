@@ -37,6 +37,7 @@ type ContainerRadius = 'none' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3x
 type ContainerShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inner';
 type ContainerPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
 type ContainerOverflow = 'visible' | 'hidden' | 'scroll' | 'auto';
+type OverlayPosition = 'center' | 'top' | 'bottom' | 'left' | 'right' | 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
 interface ContainerProps {
     as?: ContainerAs;
     display?: ContainerDisplay;
@@ -75,11 +76,15 @@ interface ContainerProps {
     shadow?: ContainerShadow;
     position?: ContainerPosition;
     overflow?: ContainerOverflow;
+    overlay?: boolean;
+    location?: OverlayPosition;
+    backdrop?: boolean;
     zIndex?: 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100;
 }
 interface JSXProps extends ContainerProps {
     children?: any;
     ref?: Signal<HTMLElement | null>;
+    htmlFor?: string | Signal<string>;
     [key: string]: any;
 }
 declare global {
@@ -145,4 +150,4 @@ declare function For<T>(props: {
     children: (item: T, index: number) => JSXElement;
 }): JSXElement;
 
-export { jsx as A, jsxs as B, type ComponentFunction as C, component as D, defineComponent as E, Fragment as F, createElements as G, Switch as H, For as I, type JSXElement as J, type MountedComponent as M, type RenderOptions as R, Show as S, type ContainerAs as a, type ContainerDisplay as b, type ContainerDirection as c, type ContainerAlign as d, type ContainerJustify as e, type ContainerGap as f, type ContainerSpace as g, type ContainerSpaceOrAuto as h, type ContainerScale as i, type ContainerFraction as j, type ContainerWidth as k, type ContainerMaxWidth as l, type ContainerMinWidth as m, type ContainerHeight as n, type ContainerMinHeight as o, type ContainerMaxHeight as p, type ContainerBg as q, type ContainerTextColor as r, type ContainerBorderColor as s, type ContainerBorderWidth as t, type ContainerRadius as u, type ContainerShadow as v, type ContainerPosition as w, type ContainerOverflow as x, type ContainerProps as y, type JSXProps as z };
+export { jsx as A, jsxs as B, type ComponentFunction as C, component as D, defineComponent as E, Fragment as F, createElements as G, Switch as H, For as I, type JSXElement as J, type MountedComponent as M, type OverlayPosition as O, type RenderOptions as R, Show as S, type ContainerAs as a, type ContainerDisplay as b, type ContainerDirection as c, type ContainerAlign as d, type ContainerJustify as e, type ContainerGap as f, type ContainerSpace as g, type ContainerSpaceOrAuto as h, type ContainerScale as i, type ContainerFraction as j, type ContainerWidth as k, type ContainerMaxWidth as l, type ContainerMinWidth as m, type ContainerHeight as n, type ContainerMinHeight as o, type ContainerMaxHeight as p, type ContainerBg as q, type ContainerTextColor as r, type ContainerBorderColor as s, type ContainerBorderWidth as t, type ContainerRadius as u, type ContainerShadow as v, type ContainerPosition as w, type ContainerOverflow as x, type ContainerProps as y, type JSXProps as z };

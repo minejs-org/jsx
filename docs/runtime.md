@@ -129,7 +129,26 @@
             })
             ```
 
-        - ### 6. Control Flow - Show Component
+        - ### 6. Overlay & Positioning
+            > Use the `overlay` prop to create full-screen overlays with alignment options.
+
+            ```typescript
+            // Centered overlay with backdrop
+            const modal = jsx('div', {
+                overlay: true,      // absolute inset-0 w-full h-full flex
+                backdrop: true,     // adds dim background
+                location: 'center', // centers content
+                zIndex: 50,
+                children: jsx('div', {
+                    bg: 'white',
+                    p: 6,
+                    radius: 'lg',
+                    children: 'Modal Content'
+                })
+            })
+            ```
+
+        - ### 7. Control Flow - Show Component
 
             ```typescript
             const isVisible = signal(true)
@@ -229,6 +248,9 @@
         interface JSXProps {
             children?       : any
             ref?            : Signal<HTMLElement | null>
+            overlay?        : boolean
+            location?       : 'center' | 'top' | 'bottom' | 'left' | 'right' | ...
+            backdrop?       : boolean
             [key: string]   : any
         }
         ```

@@ -92,6 +92,21 @@
             expect(el.className).toBe('active');
         });
 
+        test('handles htmlFor attribute', () => {
+            const el = jsx('label', { htmlFor: 'test-id' }) as HTMLElement;
+            expect(el.getAttribute('for')).toBe('test-id');
+        });
+
+        test('reactive htmlFor', () => {
+            const id = signal('id-1');
+            const el = jsx('label', { htmlFor: id }) as HTMLElement;
+            document.body.appendChild(el);
+            
+            expect(el.getAttribute('for')).toBe('id-1');
+            id.set('id-2');
+            expect(el.getAttribute('for')).toBe('id-2');
+        });
+
         test('reactive attributes', () => {
             const disabled = signal(false);
             const el = jsx('button', { disabled }) as HTMLButtonElement;

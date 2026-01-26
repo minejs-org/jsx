@@ -60,6 +60,18 @@
     export type ContainerPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
     export type ContainerOverflow = 'visible' | 'hidden' | 'scroll' | 'auto';
 
+    // Overlay Types
+    export type OverlayPosition =
+        | 'center'
+        | 'top'
+        | 'bottom'
+        | 'left'
+        | 'right'
+        | 'top-left'
+        | 'top-right'
+        | 'bottom-left'
+        | 'bottom-right';
+
     export interface ContainerProps {
         // Layout
         as?: ContainerAs;
@@ -110,6 +122,11 @@
         position?: ContainerPosition;
         overflow?: ContainerOverflow;
 
+        // Overlay
+        overlay?: boolean;
+        location?: OverlayPosition;
+        backdrop?: boolean;
+
         // Styling
         zIndex?: 0 | 10 | 20 | 30 | 40 | 50 | 60 | 70 | 80 | 90 | 100;
     }
@@ -117,6 +134,7 @@
     export interface JSXProps extends ContainerProps {
         children?       : any;
         ref?            : Signal<HTMLElement | null>;
+        htmlFor?        : string | Signal<string>;
         [key: string]   : any;
     }
 

@@ -201,6 +201,9 @@
             } else if (key === 'id') {
                 // Handle id
                 handleId(element, value);
+            } else if (key === 'htmlFor') {
+                // Handle htmlFor -> for
+                handleHtmlFor(element, value);
             } else if (key === 'className' || key === 'class') {
                 // Handle className/class
                 handledClass = true;
@@ -352,6 +355,27 @@
         } else if (value != null) {
             // Static id
             element.id = String(value);
+        }
+    }
+
+    // ============================================================================
+    // HTML FOR HANDLING
+    // ============================================================================
+
+    function handleHtmlFor(element: Element, value: any): void {
+        if (isSignal(value)) {
+            // Reactive htmlFor
+            effect(() => {
+                const val = value();
+                if (val != null) {
+                    element.setAttribute('for', String(val));
+                } else {
+                    element.removeAttribute('for');
+                }
+            });
+        } else if (value != null) {
+            // Static htmlFor
+            element.setAttribute('for', String(value));
         }
     }
 

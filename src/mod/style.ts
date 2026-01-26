@@ -10,10 +10,23 @@ import type {
     ContainerRadius,
     ContainerShadow,
     ContainerSpace,
-    ContainerSpaceOrAuto
+    ContainerSpaceOrAuto,
+    OverlayPosition
 } from '../types';
 
 // ╔════════════════════════════════════════ MAPS ════════════════════════════════════════╗
+
+const overlayPositionClassMap: Record<OverlayPosition, string> = {
+    'center': 'justify-center items-center',
+    'top': 'justify-center items-start',
+    'bottom': 'justify-center items-end',
+    'left': 'justify-start items-center',
+    'right': 'justify-end items-center',
+    'top-left': 'justify-start items-start',
+    'top-right': 'justify-end items-start',
+    'bottom-left': 'justify-start items-end',
+    'bottom-right': 'justify-end items-end',
+};
 
 const displayClassMap: Record<ContainerDisplay, string> = {
     block: 'block',
@@ -184,7 +197,8 @@ export const STYLE_PROPS = new Set([
     'p', 'px', 'py', 'ps', 'pe', 'pt', 'pb',
     'm', 'mx', 'my', 'ms', 'me', 'mt', 'mb',
     'bg', 'color', 'border', 'borderColor', 'radius', 'shadow',
-    'position', 'overflow', 'zIndex'
+    'position', 'overflow', 'zIndex',
+    'overlay', 'location', 'backdrop'
 ]);
 
 export function resolveStyleProps(props: ContainerProps): { className: string; style: any } {
@@ -226,6 +240,9 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         position,
         overflow,
         zIndex,
+        overlay,
+        location,
+        backdrop,
     } = props;
 
     const wRes = resolveSize('w', w);
@@ -242,9 +259,16 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         ...minHRes?.style,
         ...maxWRes?.style,
         ...maxHRes?.style,
+        ...(overlay && backdrop ? { backgroundColor: 'rgba(0, 0, 0, 0.5)' } : {})
     };
 
     const classes = [
+        overlay && 'absolute inset-0 w-full h-full flex',
+        overlay && location && overlayPositionClassMap[location],
+        // Default to center if overlay is true but no location provided?
+        // The original kit defaulted to center.
+        overlay && !location && overlayPositionClassMap['center'],
+        
         display && displayClassMap[display],
         direction && directionClassMap[direction],
         align && alignClassMap[align],
