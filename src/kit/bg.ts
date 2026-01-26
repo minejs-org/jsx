@@ -1,5 +1,5 @@
 
-// src/kit/bg-kit.ts
+// src/kit/bg.ts
 //
 // Made with ❤️ by Maysara.
 
@@ -16,12 +16,12 @@
 
 // ╔════════════════════════════════════════ TYPE ════════════════════════════════════════╗
 
-    export interface BgKitProps {
-        opacity?: number;
-        bgColor: ContainerBg;
-        className?: string;
-        style?: any;
-        [key: string]: any;
+    export interface BgProps {
+        opacity?        : number;
+        bgColor         : ContainerBg;
+        className?      : string;
+        style?          : any;
+        [key: string]   : any;
     }
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
@@ -30,7 +30,7 @@
 
 // ╔════════════════════════════════════════ CORE ════════════════════════════════════════╗
 
-    export function BgKit(props: BgKitProps): JSXElement {
+    export function BgKit(props: BgProps): JSXElement {
         const { bgColor = 'surface', opacity = 100, className = '', style, ...rest } = props;
 
         return jsx('div', {

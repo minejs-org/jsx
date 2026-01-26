@@ -186,13 +186,13 @@ interface TextProps {
  */
 declare function Text(props: TextProps): JSXElement;
 
-interface BgKitProps {
+interface BgProps {
     opacity?: number;
     bgColor: ContainerBg;
     className?: string;
     style?: any;
     [key: string]: any;
 }
-declare function BgKit(props: BgKitProps): JSXElement;
+declare function BgKit(props: BgProps): JSXElement;
 
-export { BgKit, type BgKitProps, ContainerBg, Divider, type DividerProps, ErrorBoundary, JSXElement, MountedComponent, Overlay, OverlayPosition, type OverlayProps, RenderOptions, Suspense, Teleport, Text, type TextProps, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
+export { BgKit, type BgProps, ContainerBg, Divider, type DividerProps, ErrorBoundary, JSXElement, MountedComponent, Overlay, OverlayPosition, type OverlayProps, RenderOptions, Suspense, Teleport, Text, type TextProps, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };

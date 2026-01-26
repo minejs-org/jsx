@@ -13,6 +13,6 @@
     export * from './kit/divider';
     export * from './kit/overlay';
     export * from './kit/text';
-    export * from './kit/bg-kit';
+    export * from './kit/bg';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
