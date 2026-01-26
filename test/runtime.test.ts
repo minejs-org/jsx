@@ -588,6 +588,19 @@
             expect(refElement as any).toBe(el);
         });
 
+        test('ref as HTMLElement (no-op)', () => {
+            const dummy = document.createElement('span');
+            const el = jsx('div', { ref: dummy }) as HTMLElement;
+            // Should not crash and ref should be ignored
+            expect(el).toBeInstanceOf(HTMLElement);
+            expect(el.tagName).toBe('DIV');
+        });
+
+        test('ref as null (no-op)', () => {
+            const el = jsx('div', { ref: null }) as HTMLElement;
+            expect(el).toBeInstanceOf(HTMLElement);
+        });
+
         test('reactive ref update', () => {
             const ref = signal<HTMLElement | null>(null);
             const el = jsx('button', { ref }) as HTMLElement;

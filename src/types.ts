@@ -133,7 +133,7 @@
 
     export interface JSXProps extends ContainerProps {
         children?       : any;
-        ref?            : Signal<HTMLElement | null>;
+        ref?            : Signal<HTMLElement | null> | HTMLElement | null;
         htmlFor?        : string | Signal<string>;
         [key: string]   : any;
     }

@@ -1,2 +1,2 @@
-export { F as Fragment, A as jsx, B as jsxs } from './jsx-dev-runtime-DFrfaKOw.cjs';
+export { F as Fragment, A as jsx, B as jsxs } from './jsx-dev-runtime-BVwpihrl.cjs';
 import '@minejs/signals';
