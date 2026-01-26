@@ -8,10 +8,10 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/badge/v-0.2.6-black"/>
+    <img src="https://img.shields.io/badge/v-0.2.7-black"/>
     <img src="https://img.shields.io/badge/🔥-@minejs-black"/>
     <br>
-    <img src="https://img.shields.io/badge/coverage-98.06%25-brightgreen" alt="Test Coverage" />
+    <img src="https://img.shields.io/badge/coverage-98.11%25-brightgreen" alt="Test Coverage" />
     <img src="https://img.shields.io/github/issues/minejs-org/jsx?style=flat" alt="Github Repo Issues" />
     <img src="https://img.shields.io/github/stars/minejs-org/jsx?style=social" alt="GitHub Repo stars" />
 </div>
@@ -52,15 +52,15 @@
             ```typescript
             // Create simple element
             const el = jsx('div', {
-                className: 'container',
-                children: 'Hello World'
+                className   : 'container',
+                children    : 'Hello World'
             })
 
             // Create with attributes
             const button = jsx('button', {
-                id: 'submit',
-                children: 'Click me',
-                onClick: () => console.log('Clicked!')
+                id          : 'submit',
+                children    : 'Click me',
+                onClick     : () => console.log('Clicked!')
             })
             ```
 
@@ -107,22 +107,22 @@
             ```typescript
             // Apply Tailwind-like props directly!
             const card = jsx('div', {
-                display: 'flex',
-                direction: 'column',
-                p: 4,           // padding: 1rem
-                gap: 2,         // gap: 0.5rem
-                bg: 'white',    // background-color
-                shadow: 'md',   // box-shadow
-                radius: 'lg',   // border-radius
-                children: 'Beautiful Card'
+                display     : 'flex',
+                direction   : 'column',
+                p           : 4,        // padding: 1rem
+                gap         : 2,        // gap: 0.5rem
+                bg          : 'white',  // background-color
+                shadow      : 'md',     // box-shadow
+                radius      : 'lg',     // border-radius
+                children    : 'Beautiful Card'
             })
 
             // Create Overlay
             const modal = jsx('div', {
-                overlay: true,
-                backdrop: true,
-                location: 'center',
-                children: 'Modal Content'
+                overlay     : true,
+                backdrop    : true,
+                location    : 'center',
+                children    : 'Modal Content'
             })
             ```
 

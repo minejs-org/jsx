@@ -20,7 +20,12 @@ import type {
     ContainerAnimateDuration,
     ContainerAnimateDelay,
     ContainerAnimateEase,
-    ContainerAnimateFill
+    ContainerAnimateFill,
+    ContainerTextSize,
+    ContainerTextWeight,
+    ContainerTextAlign,
+    ContainerTextWrap,
+    ContainerTextTransform
 } from '../types';
 
 // ╔════════════════════════════════════════ MAPS ════════════════════════════════════════╗
@@ -196,6 +201,58 @@ const animateFillClassMap: Record<ContainerAnimateFill, string> = {
     none: 'animate-fill-none'
 };
 
+const textSizeClassMap: Record<ContainerTextSize, string> = {
+    xs: 'text-xs',
+    sm: 'text-sm',
+    base: 'text-base',
+    md: 'text-md',
+    lg: 'text-lg',
+    xl: 'text-xl',
+    '2xl': 'text-2xl',
+    '3xl': 'text-3xl',
+    '4xl': 'text-4xl',
+    '5xl': 'text-5xl',
+    '6xl': 'text-6xl',
+    '7xl': 'text-7xl',
+    '8xl': 'text-8xl',
+    '9xl': 'text-9xl'
+};
+
+const textWeightClassMap: Record<ContainerTextWeight, string> = {
+    thin: 'font-thin',
+    extralight: 'font-extralight',
+    light: 'font-light',
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+    black: 'font-black'
+};
+
+const textAlignClassMap: Record<ContainerTextAlign, string> = {
+    start: 'text-start',
+    end: 'text-end',
+    left: 'text-left',
+    right: 'text-right',
+    center: 'text-center',
+    justify: 'text-justify'
+};
+
+const textWrapClassMap: Record<ContainerTextWrap, string> = {
+    wrap: 'text-wrap',
+    nowrap: 'text-nowrap',
+    balance: 'text-balance',
+    pretty: 'text-pretty'
+};
+
+const textTransformClassMap: Record<ContainerTextTransform, string> = {
+    uppercase: 'uppercase',
+    lowercase: 'lowercase',
+    capitalize: 'capitalize',
+    none: 'normal-case'
+};
+
 // ╔════════════════════════════════════════ HELP ════════════════════════════════════════╗
 
 function spacingClass(prefix: string, value: ContainerSpace | undefined): string | undefined {
@@ -287,7 +344,8 @@ export const STYLE_PROPS = new Set([
     'overlay', 'location', 'backdrop',
     'divider',
     'cursor', 'select', 'pointerEvents', 'resize',
-    'animate', 'animateDuration', 'animateDelay', 'animateEase', 'animateFill'
+    'animate', 'animateDuration', 'animateDelay', 'animateEase', 'animateFill',
+    'textSize', 'textWeight', 'textAlign', 'textWrap', 'textTransform', 'italic', 'underline', 'lineThrough', 'truncate'
 ]);
 
 export function resolveStyleProps(props: ContainerProps): { className: string; style: any } {
@@ -348,7 +406,16 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         animateDuration,
         animateDelay,
         animateEase,
-        animateFill
+        animateFill,
+        textSize,
+        textWeight,
+        textAlign,
+        textWrap,
+        textTransform,
+        italic,
+        underline,
+        lineThrough,
+        truncate
     } = props;
 
     const sizeWRes = resolveSize('w', size);
@@ -440,6 +507,17 @@ export function resolveStyleProps(props: ContainerProps): { className: string; s
         animateDelay && `animate-delay-${animateDelay}`,
         animateEase && animateEaseClassMap[animateEase],
         animateFill && animateFillClassMap[animateFill],
+
+        // Typography
+        textSize && textSizeClassMap[textSize],
+        textWeight && textWeightClassMap[textWeight],
+        textAlign && textAlignClassMap[textAlign],
+        textWrap && textWrapClassMap[textWrap],
+        textTransform && textTransformClassMap[textTransform],
+        italic && 'italic',
+        underline && 'underline',
+        lineThrough && 'line-through',
+        truncate && 'truncate',
 
         // Divider logic
         divider === true && 'border-t',

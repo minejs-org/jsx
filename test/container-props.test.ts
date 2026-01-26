@@ -206,10 +206,44 @@
             // But styles?
             // if (containerStyle && !SVG_ELEMENTS.has(type) ... applyStyles
             // '100px' would be a style.
-
+            
             // Wait, '100px' is not in scale, so it returns style: { width: '100px' }
             // runtime.ts checks SVG_ELEMENTS to skip applyStyles?
             // Let's verify this assumption.
+        });
+
+        test('handles typography props', () => {
+            const el = jsx('div', {
+                textSize: 'xl',
+                textWeight: 'bold',
+                textAlign: 'center',
+                textWrap: 'balance',
+                textTransform: 'uppercase',
+                italic: true,
+                underline: true,
+                lineThrough: true,
+                truncate: true
+            }) as HTMLElement;
+
+            expect(el.className).toContain('text-xl');
+            expect(el.className).toContain('font-bold');
+            expect(el.className).toContain('text-center');
+            expect(el.className).toContain('text-balance');
+            expect(el.className).toContain('uppercase');
+            expect(el.className).toContain('italic');
+            expect(el.className).toContain('underline');
+            expect(el.className).toContain('line-through');
+            expect(el.className).toContain('truncate');
+        });
+
+        test('handles typography variants', () => {
+            const el1 = jsx('div', { textSize: 'xs', textWeight: 'thin' }) as HTMLElement;
+            expect(el1.className).toContain('text-xs');
+            expect(el1.className).toContain('font-thin');
+
+            const el2 = jsx('div', { textSize: '9xl', textWeight: 'black' }) as HTMLElement;
+            expect(el2.className).toContain('text-9xl');
+            expect(el2.className).toContain('font-black');
         });
     });
 

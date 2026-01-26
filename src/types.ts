@@ -65,6 +65,13 @@
     export type ContainerPointerEvents = 'none' | 'auto';
     export type ContainerResize = 'none' | 'both' | 'y' | 'x';
 
+    // Text Types
+    export type ContainerTextSize = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
+    export type ContainerTextWeight = 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
+    export type ContainerTextAlign = 'start' | 'end' | 'left' | 'right' | 'center' | 'justify';
+    export type ContainerTextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty';
+    export type ContainerTextTransform = 'uppercase' | 'lowercase' | 'capitalize' | 'none';
+
     // Animation Types
     export type ContainerAnimation = 'none' | 'spin' | 'ping' | 'pulse' | 'bounce' | 'fade-in' | 'fade-out' | 'slide-in-up' | 'slide-in-down' | 'slide-in-left' | 'slide-in-right' | 'zoom-in' | 'zoom-out';
     export type ContainerAnimateDuration = 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
@@ -138,6 +145,17 @@
         radius?: ContainerRadius;
         shadow?: ContainerShadow;
         opacity?: number;
+
+        // Typography
+        textSize?: ContainerTextSize;
+        textWeight?: ContainerTextWeight;
+        textAlign?: ContainerTextAlign;
+        textWrap?: ContainerTextWrap;
+        textTransform?: ContainerTextTransform;
+        italic?: boolean;
+        underline?: boolean;
+        lineThrough?: boolean;
+        truncate?: boolean;
 
         // Positioning / overflow
         position?: ContainerPosition;

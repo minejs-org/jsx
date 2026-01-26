@@ -134,6 +134,17 @@
                 animateEase: 'in-out', // linear | in | out | in-out
                 animateFill: 'forwards', // forwards | backwards | both | none
 
+                // Typography
+                textSize: 'xl',        // xs | sm | base | md | lg | xl | 2xl ... 9xl
+                textWeight: 'bold',    // thin | light | normal | medium | bold | black ...
+                textAlign: 'center',   // start | end | left | right | center | justify
+                textWrap: 'balance',   // wrap | nowrap | balance | pretty
+                textTransform: 'uppercase', // uppercase | lowercase | capitalize | none
+                italic: true,
+                underline: true,
+                lineThrough: true,
+                truncate: true,
+
                 children: [
                     jsx('h2', {
                         children: 'Title',

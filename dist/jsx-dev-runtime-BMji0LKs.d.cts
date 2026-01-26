@@ -42,6 +42,11 @@ type ContainerCursor = 'auto' | 'default' | 'pointer' | 'wait' | 'text' | 'move'
 type ContainerUserSelect = 'none' | 'text' | 'all' | 'auto';
 type ContainerPointerEvents = 'none' | 'auto';
 type ContainerResize = 'none' | 'both' | 'y' | 'x';
+type ContainerTextSize = 'xs' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl' | '7xl' | '8xl' | '9xl';
+type ContainerTextWeight = 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
+type ContainerTextAlign = 'start' | 'end' | 'left' | 'right' | 'center' | 'justify';
+type ContainerTextWrap = 'wrap' | 'nowrap' | 'balance' | 'pretty';
+type ContainerTextTransform = 'uppercase' | 'lowercase' | 'capitalize' | 'none';
 type ContainerAnimation = 'none' | 'spin' | 'ping' | 'pulse' | 'bounce' | 'fade-in' | 'fade-out' | 'slide-in-up' | 'slide-in-down' | 'slide-in-left' | 'slide-in-right' | 'zoom-in' | 'zoom-out';
 type ContainerAnimateDuration = 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
 type ContainerAnimateDelay = 75 | 100 | 150 | 200 | 300 | 500 | 700 | 1000;
@@ -91,6 +96,15 @@ interface ContainerProps {
     radius?: ContainerRadius;
     shadow?: ContainerShadow;
     opacity?: number;
+    textSize?: ContainerTextSize;
+    textWeight?: ContainerTextWeight;
+    textAlign?: ContainerTextAlign;
+    textWrap?: ContainerTextWrap;
+    textTransform?: ContainerTextTransform;
+    italic?: boolean;
+    underline?: boolean;
+    lineThrough?: boolean;
+    truncate?: boolean;
     position?: ContainerPosition;
     overflow?: ContainerOverflow;
     divider?: boolean | 'horizontal' | 'vertical';
@@ -177,4 +191,4 @@ declare function For<T>(props: {
     children: (item: T, index: number) => JSXElement;
 }): JSXElement;
 
-export { type ContainerUserSelect as A, type ContainerPointerEvents as B, type ComponentFunction as C, type ContainerResize as D, type ContainerAnimation as E, type ContainerAnimateDuration as F, type ContainerAnimateDelay as G, type ContainerAnimateEase as H, type ContainerAnimateFill as I, type JSXElement as J, type ContainerProps as K, type JSXProps as L, type MountedComponent as M, jsx as N, type OverlayPosition as O, jsxs as P, Fragment as Q, type RenderOptions as R, component as S, defineComponent as T, createElements as U, Show as V, Switch as W, For as X, type ContainerAs as a, type ContainerDisplay as b, type ContainerDirection as c, type ContainerAlign as d, type ContainerJustify as e, type ContainerGap as f, type ContainerSpace as g, type ContainerSpaceOrAuto as h, type ContainerScale as i, type ContainerFraction as j, type ContainerWidth as k, type ContainerMaxWidth as l, type ContainerMinWidth as m, type ContainerHeight as n, type ContainerMinHeight as o, type ContainerMaxHeight as p, type ContainerBg as q, type ContainerTextColor as r, type ContainerBorderColor as s, type ContainerBorderStyle as t, type ContainerBorderWidth as u, type ContainerRadius as v, type ContainerShadow as w, type ContainerPosition as x, type ContainerOverflow as y, type ContainerCursor as z };
+export { Switch as $, type ContainerUserSelect as A, type ContainerPointerEvents as B, type ComponentFunction as C, type ContainerResize as D, type ContainerTextSize as E, type ContainerTextWeight as F, type ContainerTextAlign as G, type ContainerTextWrap as H, type ContainerTextTransform as I, type JSXElement as J, type ContainerAnimation as K, type ContainerAnimateDuration as L, type MountedComponent as M, type ContainerAnimateDelay as N, type ContainerAnimateEase as O, type ContainerAnimateFill as P, type OverlayPosition as Q, type RenderOptions as R, type ContainerProps as S, type JSXProps as T, jsx as U, jsxs as V, Fragment as W, component as X, defineComponent as Y, createElements as Z, Show as _, type ContainerAs as a, For as a0, type ContainerDisplay as b, type ContainerDirection as c, type ContainerAlign as d, type ContainerJustify as e, type ContainerGap as f, type ContainerSpace as g, type ContainerSpaceOrAuto as h, type ContainerScale as i, type ContainerFraction as j, type ContainerWidth as k, type ContainerMaxWidth as l, type ContainerMinWidth as m, type ContainerHeight as n, type ContainerMinHeight as o, type ContainerMaxHeight as p, type ContainerBg as q, type ContainerTextColor as r, type ContainerBorderColor as s, type ContainerBorderStyle as t, type ContainerBorderWidth as u, type ContainerRadius as v, type ContainerShadow as w, type ContainerPosition as x, type ContainerOverflow as y, type ContainerCursor as z };

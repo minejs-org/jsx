@@ -114,7 +114,9 @@
         /^(truncate|text-ellipsis|text-clip)$/,
         /^(uppercase|lowercase|capitalize|normal-case)$/,
         /^(italic|not-italic)$/,
-        /^(underline|overline|line-through|no-underline)$/,
+        /^(underline|no-underline)$/,
+        /^(overline)$/,
+        /^(line-through)$/,
         /^text-(?!left|center|right|justify|start|end|xs|sm|base|md|lg|xl|\d+xl|wrap|nowrap|balance|pretty|ellipsis|clip).+$/, // Text color
 
         // Background & Effects
