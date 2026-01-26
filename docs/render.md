@@ -26,10 +26,10 @@
 
     - ### Setup
 
-        > install [`hmm`](https://github.com/minejsx-org/hmm) first.
+        > install [`hmm`](https://github.com/minejs-org/hmm) first.
 
         ```bash
-        hmm i @minejsx/render
+        hmm i @minejs/jsx
         ```
 
     <div align="center"> <img src="../assets/img/line.png" alt="line" style="display: block; margin-top:20px;margin-bottom:20px;width:500px;"/> <br> </div>
@@ -37,7 +37,7 @@
     - ### Usage
 
         ```ts
-        import { render, mount, createRoot } from '@minejsx/render'
+        import { render, mount, createRoot } from '@minejs/jsx'
         ```
 
         - ### 1. Render Elements to DOM
@@ -271,7 +271,7 @@
   - #### Simple Counter Component
 
     ```typescript
-    import { render } from '@minejsx/render'
+    import { render } from '@minejs/jsx'
     import { signal } from '@minejs/signals'
 
     const count = signal(0)
@@ -298,7 +298,7 @@
   - #### Modal with Portal
 
     ```typescript
-    import { render, createPortal } from '@minejsx/render'
+    import { render, createPortal } from '@minejs/jsx'
 
     const modal = document.createElement('div')
     modal.className = 'modal'
@@ -314,7 +314,7 @@
   - #### Lazy Loading Component
 
     ```typescript
-    import { render, lazy } from '@minejsx/render'
+    import { render, lazy } from '@minejs/jsx'
 
     const fallback = document.createElement('div')
     fallback.textContent = 'Loading...'
@@ -331,7 +331,7 @@
   - #### Multiple Renders with Root
 
     ```typescript
-    import { render, createRoot } from '@minejsx/render'
+    import { render, createRoot } from '@minejs/jsx'
 
     const root = createRoot('#app')
 
@@ -354,7 +354,7 @@
   - #### Error Boundary Example
 
     ```typescript
-    import { render, ErrorBoundary } from '@minejsx/render'
+    import { render, ErrorBoundary } from '@minejs/jsx'
 
     const content = document.createElement('div')
     content.textContent = 'Safe content'
@@ -395,7 +395,7 @@
         - #### TypeScript/JavaScript (app.ts)
 
             ```typescript
-            import { render } from '@minejsx/render'
+            import { render } from '@minejs/jsx'
 
             // Create element
             const app = document.createElement('div')
@@ -420,7 +420,7 @@
             {
                 "compilerOptions": {
                     "jsx": "react-jsx",
-                    "jsxImportSource": "@minejsx/runtime"
+                    "jsxImportSource": "@minejs/jsx"
                 }
             }
             ```
@@ -428,8 +428,8 @@
         - #### Component File (App.tsx)
 
             ```jsx
-            import { render } from '@minejsx/render'
-            import type { JSXElement } from '@minejsx/runtime';
+            import { render } from '@minejs/jsx'
+            import type { JSXElement } from '@minejs/jsx';
             import { signal } from '@minejs/signals'
 
             const count = signal(0)
@@ -449,7 +449,7 @@
         - #### Main Entry (main.tsx)
 
             ```tsx
-            import { render } from '@minejsx/render'
+            import { render } from '@minejs/jsx'
             import App from './App'
 
             render(<App />, '#app')

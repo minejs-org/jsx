@@ -12,7 +12,7 @@
     import { JSDOM }                                                    from 'jsdom';
     import { signal, effect, computed }                                 from '@minejs/signals';
     import { jsx, Fragment, Show, For, component, defineComponent, createElements, Switch, JSXElement } from '../src';
-    import { render, mount, createRoot, lazy, ErrorBoundary, Suspense, Teleport, createPortal, hydrate, queueUpdate, onDOMReady, isBrowser } from '@minejsx/render';
+    import { render, mount, createRoot, lazy, ErrorBoundary, Suspense, Teleport, createPortal, hydrate, queueUpdate, onDOMReady, isBrowser } from '../src';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
 

@@ -29,7 +29,7 @@
         > install [`hmm`](https://github.com/minejs-org/hmm) first.
 
         ```bash
-        hmm i @minejsx/runtime
+        hmm i @minejs/jsx
         ```
 
     <div align="center"> <img src="../assets/img/line.png" alt="line" style="display: block; margin-top:20px;margin-bottom:20px;width:500px;"/> <br> </div>
@@ -37,7 +37,7 @@
     - ### Usage
 
         ```ts
-        import { jsx, Fragment, Show, For, Switch, component, defineComponent } from '@minejsx/runtime'
+        import { jsx, Fragment, Show, For, Switch, component, defineComponent } from '@minejs/jsx'
         import { signal, effect, computed } from '@minejs/signals'
         ```
 
@@ -61,7 +61,7 @@
         - ### 2. Reactive Content with Signals
 
             ```typescript
-            import { render } from '@minejsx/render'
+            import { render } from '@minejs/jsx'
             import { signal } from '@minejs/signals'
 
             const count = signal(0)
@@ -256,7 +256,7 @@
         ```
 
     - #### `JSXElement`
-        > Type for JSX elements (imported from @minejsx/render).
+        > Type for JSX elements (imported from @minejs/jsx).
 
         ```typescript
         type JSXElement = Element | DocumentFragment | null
@@ -491,8 +491,8 @@
   - #### Counter Component with Signals
 
     ```typescript
-    import { jsx, component } from '@minejsx/runtime'
-    import { render } from '@minejsx/render'
+    import { jsx, component } from '@minejs/jsx'
+    import { render } from '@minejs/jsx'
     import { signal } from '@minejs/signals'
 
     const Counter = component(() => {
@@ -520,8 +520,8 @@
   - #### Todo Application
 
     ```typescript
-    import { jsx, component, For } from '@minejsx/runtime'
-    import { render } from '@minejsx/render'
+    import { jsx, component, For } from '@minejs/jsx'
+    import { render } from '@minejs/jsx'
     import { signal, computed } from '@minejs/signals'
 
     interface Todo {
@@ -602,8 +602,8 @@
   - #### Form with Computed Validation
 
     ```typescript
-    import { jsx, component, Show } from '@minejsx/runtime'
-    import { render } from '@minejsx/render'
+    import { jsx, component, Show } from '@minejs/jsx'
+    import { render } from '@minejs/jsx'
     import { signal, computed } from '@minejs/signals'
 
     const LoginForm = component(() => {
@@ -673,8 +673,8 @@
   - #### Dynamic List with Filtering
 
     ```typescript
-    import { jsx, component, For } from '@minejsx/runtime'
-    import { render } from '@minejsx/render'
+    import { jsx, component, For } from '@minejs/jsx'
+    import { render } from '@minejs/jsx'
     import { signal, computed } from '@minejs/signals'
 
     const FilteredList = component(() => {
@@ -709,8 +709,8 @@
   - #### Component Composition
 
     ```typescript
-    import { jsx, component } from '@minejsx/runtime'
-    import { render } from '@minejsx/render'
+    import { jsx, component } from '@minejs/jsx'
+    import { render } from '@minejs/jsx'
     import { signal } from '@minejs/signals'
 
     const Button = component<{ onClick: () => void; children: string }>((props) => {
@@ -780,8 +780,8 @@
         - #### TypeScript/JavaScript (app.ts)
 
             ```typescript
-            import { jsx } from '@minejsx/runtime'
-            import { render } from '@minejsx/render'
+            import { jsx } from '@minejs/jsx'
+            import { render } from '@minejs/jsx'
             import { signal } from '@minejs/signals'
 
             const count = signal(0)
@@ -810,7 +810,7 @@
             {
                 "compilerOptions": {
                     "jsx": "react-jsx",
-                    "jsxImportSource": "@minejsx/runtime",
+                    "jsxImportSource": "@minejs/jsx",
                     "target": "ES2020",
                     "module": "ES2020",
                     "strict": true
@@ -822,7 +822,7 @@
 
             ```tsx
             import { signal } from '@minejs/signals'
-            import { JSXElement } from '@minejsx/runtime'
+            import { JSXElement } from '@minejs/jsx'
 
             export function Counter(): JSXElement {
                 const count = signal(0)
@@ -844,7 +844,7 @@
         - #### Main App (app.tsx)
 
             ```tsx
-            import { render } from '@minejsx/render'
+            import { render } from '@minejs/jsx'
             import { Counter } from './Counter'
 
             render(<Counter />, '#app')
