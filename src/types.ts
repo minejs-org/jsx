@@ -55,8 +55,8 @@
     export type ContainerTextColor = '1' | '2' | '3' | '4' | 'inverse' | 'brand' | 'success' | 'warning' | 'error' | 'info' | 'current' | 'transparent';
     export type ContainerBorderColor = '1' | '2' | '3' | 'brand' | 'success' | 'warning' | 'error' | 'current' | 'transparent';
     export type ContainerBorderWidth = 0 | 1 | 2 | 4 | 8;
-    export type ContainerRadius = 'none' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
-    export type ContainerShadow = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'inner';
+    export type ContainerRadius      = 'none' | 'sm' | 'base' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | 'full';
+    export type ContainerShadow      = 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'inner';
     export type ContainerPosition = 'static' | 'relative' | 'absolute' | 'fixed' | 'sticky';
     export type ContainerOverflow = 'visible' | 'hidden' | 'scroll' | 'auto';
 
