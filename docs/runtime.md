@@ -101,7 +101,35 @@
             })
             ```
 
-        - ### 5. Control Flow - Show Component
+        - ### 5. Container & Layout Props
+
+            > You can apply Tailwind-like layout and spacing props directly to any HTML element.
+
+            ```typescript
+            // Flex container with spacing and alignment
+            const card = jsx('div', {
+                display: 'flex',
+                direction: 'column',
+                gap: 4,          // gap-4
+                p: 6,            // p-6 (padding)
+                bg: 'white',     // bg-white
+                shadow: 'md',    // shadow-md
+                radius: 'lg',    // rounded-lg
+                children: [
+                    jsx('h2', {
+                        children: 'Title',
+                        mb: 2,       // mb-2 (margin-bottom)
+                        color: 'gray-900' // text-gray-900
+                    }),
+                    jsx('p', {
+                        children: 'Content...',
+                        color: 'gray-600' // text-gray-600
+                    })
+                ]
+            })
+            ```
+
+        - ### 6. Control Flow - Show Component
 
             ```typescript
             const isVisible = signal(true)
@@ -112,7 +140,7 @@
             })
             ```
 
-        - ### 6. Control Flow - For Loop
+        - ### 7. Control Flow - For Loop
 
             ```typescript
             const items = signal(['Apple', 'Banana', 'Orange'])
@@ -125,7 +153,7 @@
             })
             ```
 
-        - ### 7. Switch - Multiple Conditions
+        - ### 8. Switch - Multiple Conditions
 
             ```typescript
             const status = signal('loading')
@@ -139,7 +167,7 @@
             })
             ```
 
-        - ### 8. Creating Components
+        - ### 9. Creating Components
 
             ```typescript
             // Functional component
@@ -151,7 +179,7 @@
             const greeting = Greeting({ name: 'World' })
             ```
 
-        - ### 9. Components with Setup Function
+        - ### 10. Components with Setup Function
 
             ```typescript
             const Counter = defineComponent((props) => {
@@ -169,7 +197,7 @@
             })
             ```
 
-        - ### 10. Using Refs
+        - ### 11. Using Refs
 
             ```typescript
             const inputRef = signal<HTMLInputElement | null>(null)

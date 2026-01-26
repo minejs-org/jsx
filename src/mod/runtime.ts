@@ -10,6 +10,7 @@
     import { effect, isSignal, type Signal } from '@minejs/signals';
     import type { JSXElement, JSXProps, ComponentFunction } from '../types';
     import { normalizeString, cleanClassName } from './utils';
+    import { resolveStyleProps, STYLE_PROPS } from './style';
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
 
@@ -54,6 +55,56 @@
         });
 
         return fragment;
+    }
+
+    // ============================================================================
+    // DOM OBSERVER (onload support)
+    // ============================================================================
+
+    let observerInitialized = false;
+
+    function initOnLoadObserver() {
+        if (observerInitialized) return;
+        if (typeof window === 'undefined' || typeof MutationObserver === 'undefined') return;
+
+        observerInitialized = true;
+
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                mutation.addedNodes.forEach((node) => {
+                    if (node instanceof Element) {
+                        checkOnLoad(node);
+                    }
+                });
+            });
+        });
+
+        if (document.body) {
+            observer.observe(document.body, { childList: true, subtree: true });
+        } else {
+            document.addEventListener('DOMContentLoaded', () => {
+                if (document.body) {
+                    observer.observe(document.body, { childList: true, subtree: true });
+                }
+            });
+        }
+    }
+
+    function checkOnLoad(element: Element) {
+        if (element.hasAttribute('data-mine-onload')) {
+            const handler = (element as any)['__onload'];
+            if (typeof handler === 'function') {
+                handler(element);
+            }
+        }
+
+        const children = element.querySelectorAll('[data-mine-onload]');
+        children.forEach((child) => {
+            const handler = (child as any)['__onload'];
+            if (typeof handler === 'function') {
+                handler(child);
+            }
+        });
     }
 
 // ╚══════════════════════════════════════════════════════════════════════════════════════╝
@@ -113,8 +164,21 @@
             && '__html' in props.dangerouslySetInnerHTML
             && typeof props.dangerouslySetInnerHTML.__html === 'string';
 
+        // Resolve container props (style props)
+        const { className: containerClass, style: containerStyle } = resolveStyleProps(props);
+
+        // Apply container styles immediately (as base)
+        if (containerStyle && !SVG_ELEMENTS.has(type) && !MATHML_ELEMENTS.has(type)) {
+            applyStyles(element as HTMLElement, containerStyle);
+        }
+
+        let handledClass = false;
+
         // Set properties and attributes
         for (const [key, value] of Object.entries(props)) {
+            // Skip container style props as they are already handled
+            if (STYLE_PROPS.has(key)) continue;
+
             if (key === 'children') {
                 // Skip children if dangerouslySetInnerHTML is present and valid
                 if (!hasValidDangerouslySetInnerHTML) {
@@ -123,18 +187,24 @@
             } else if (key === 'dangerouslySetInnerHTML') {
                 // Handle dangerouslySetInnerHTML - inject raw HTML
                 handleDangerouslySetInnerHTML(element as HTMLElement, value);
+            } else if (key === 'onload') {
+                // Handle onload lifecycle event
+                (element as any)['__onload'] = value;
+                element.setAttribute('data-mine-onload', '');
+                initOnLoadObserver();
             } else if (key === 'ref') {
                 // Handle ref
                 handleRef(element as HTMLElement, value);
-            } else if (key === 'onload') {
-                // Handle onload
-                handleOnLoad(element, value);
             } else if (key.startsWith('on')) {
                 // Handle events (onClick, onInput, etc)
                 handleEvent(element, key, value);
+            } else if (key === 'id') {
+                // Handle id
+                handleId(element, value);
             } else if (key === 'className' || key === 'class') {
                 // Handle className/class
-                handleClassName(element, value);
+                handledClass = true;
+                handleClassName(element, value, containerClass);
             } else if (key === 'style') {
                 // Handle inline styles
                 handleStyle(element as HTMLElement, value);
@@ -162,6 +232,11 @@
                     }
                 }
             }
+        }
+
+        // If no explicit className was provided but we have container classes, apply them
+        if (!handledClass && containerClass) {
+            handleClassName(element, containerClass);
         }
 
         return element;
@@ -204,56 +279,6 @@
     }
 
     // ============================================================================
-    // ONLOAD HANDLING
-    // ============================================================================
-
-    const onLoadMap = new WeakMap<Element, () => void>();
-    const ONLOAD_ATTR = 'data-mine-onload';
-    let observer: MutationObserver | null = null;
-
-    function initObserver() {
-        if (observer) return;
-        if (typeof MutationObserver === 'undefined') return;
-
-        observer = new MutationObserver((mutations) => {
-            mutations.forEach(mutation => {
-                mutation.addedNodes.forEach(node => {
-                    if (node.nodeType === 1) { // Node.ELEMENT_NODE
-                        checkOnLoad(node as Element);
-                    }
-                });
-            });
-        });
-
-        observer.observe(document, {
-            childList: true,
-            subtree: true
-        });
-    }
-
-    function checkOnLoad(element: Element) {
-        if (element.hasAttribute(ONLOAD_ATTR)) {
-            const cb = onLoadMap.get(element);
-            if (cb) cb();
-        }
-
-        // Check descendants
-        const descendants = element.querySelectorAll(`[${ONLOAD_ATTR}]`);
-        descendants.forEach(descendant => {
-            const cb = onLoadMap.get(descendant);
-            if (cb) cb();
-        });
-    }
-
-    function handleOnLoad(element: Element, callback: any): void {
-        if (typeof callback !== 'function') return;
-
-        onLoadMap.set(element, callback);
-        element.setAttribute(ONLOAD_ATTR, 'true');
-        initObserver();
-    }
-
-    // ============================================================================
     // REF HANDLING
     // ============================================================================
 
@@ -282,9 +307,10 @@
     // CLASS NAME HANDLING
     // ============================================================================
 
-    function handleClassName(element: Element, value: any): void {
+    function handleClassName(element: Element, value: any, baseClass: string = ''): void {
         const setClass = (val: string) => {
-            const cleaned = cleanClassName(String(val));
+            const fullClass = baseClass ? `${baseClass} ${val}` : val;
+            const cleaned = cleanClassName(String(fullClass));
             if (element.namespaceURI === SVG_NAMESPACE) {
                 element.setAttribute('class', cleaned);
             } else {
@@ -298,11 +324,34 @@
                 const className = value();
                 if (className != null) {
                     setClass(String(className));
+                } else if (baseClass) {
+                    setClass('');
                 }
             });
         } else if (value != null) {
             // Static className
             setClass(String(value));
+        }
+    }
+
+    // ============================================================================
+    // ID HANDLING
+    // ============================================================================
+
+    function handleId(element: Element, value: any): void {
+        if (isSignal(value)) {
+            // Reactive id
+            effect(() => {
+                const id = value();
+                if (id != null) {
+                    element.id = String(id);
+                } else {
+                    element.removeAttribute('id');
+                }
+            });
+        } else if (value != null) {
+            // Static id
+            element.id = String(value);
         }
     }
 

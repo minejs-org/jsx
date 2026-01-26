@@ -8,7 +8,7 @@
 </div>
 
 <div align="center">
-    <img src="https://img.shields.io/badge/v-0.1.8-black"/>
+    <img src="https://img.shields.io/badge/v-0.1.9-black"/>
     <img src="https://img.shields.io/badge/🔥-@minejs-black"/>
     <br>
     <img src="https://img.shields.io/badge/coverage-91.43%25-brightgreen" alt="Test Coverage" />
@@ -99,6 +99,22 @@
                 onload: () => {
                     console.log('Element added to DOM!')
                 }
+            })
+            ```
+
+        - ### 5. Layout & Styling Props
+
+            ```typescript
+            // Apply Tailwind-like props directly!
+            const card = jsx('div', {
+                display: 'flex',
+                direction: 'column',
+                p: 4,           // padding: 1rem
+                gap: 2,         // gap: 0.5rem
+                bg: 'white',    // background-color
+                shadow: 'md',   // box-shadow
+                radius: 'lg',   // border-radius
+                children: 'Beautiful Card'
             })
             ```
 
