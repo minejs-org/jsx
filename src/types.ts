@@ -35,7 +35,7 @@
     export type ComponentFunction<P = any> = (props: P) => JSXElement | null;
 
     // Container Types
-    export type ContainerAs = 'div' | 'label' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main' | 'nav' | 'span' | 'button' | 'a' | 'form' | 'ul' | 'ol' | 'li';
+    export type ContainerAs = 'div' | 'label' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main' | 'nav' | 'span' | 'button' | 'a' | 'form' | 'ul' | 'ol' | 'li' | (string & {});
     export type ContainerDisplay = 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'inline-grid';
     export type ContainerDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
     export type ContainerAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';

@@ -692,6 +692,42 @@
 
             expect(el.childNodes.length).toBe(0);
         });
+
+        test('renders div as span', () => {
+            const el = jsx('div', { as: 'span', children: 'text' }) as HTMLElement;
+            expect(el.tagName.toLowerCase()).toBe('span');
+            expect(el.textContent).toBe('text');
+            expect(el.hasAttribute('as')).toBe(false);
+        });
+
+        test('renders div as a with href', () => {
+            const el = jsx('div', { 
+                as: 'a', 
+                href: '#link', 
+                children: 'Link' 
+            }) as HTMLElement;
+            
+            expect(el.tagName.toLowerCase()).toBe('a');
+            expect(el.getAttribute('href')).toBe('#link');
+            expect(el.textContent).toBe('Link');
+        });
+
+        test('renders with custom tag name', () => {
+            const el = jsx('div', { as: 'custom-element' }) as HTMLElement;
+            expect(el.tagName.toLowerCase()).toBe('custom-element');
+        });
+
+        test('retains other props and styles', () => {
+            const el = jsx('div', { 
+                as: 'button',
+                className: 'btn',
+                color: 'brand'
+            }) as HTMLElement;
+            
+            expect(el.tagName.toLowerCase()).toBe('button');
+            expect(el.classList.contains('btn')).toBe(true);
+            expect(el.classList.contains('text-brand')).toBe(true);
+        });
     });
 
     // ============================================================================

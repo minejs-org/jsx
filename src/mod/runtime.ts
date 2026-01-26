@@ -146,6 +146,11 @@
     const MATHML_NAMESPACE = 'http://www.w3.org/1998/Math/MathML';
 
     function createHTMLElement(type: string, props: JSXProps): Element {
+        // Handle 'as' prop to change the element type
+        if (props.as) {
+            type = props.as;
+        }
+
         // Determine namespace and create element appropriately
         let element: Element;
 
@@ -178,6 +183,9 @@
         for (const [key, value] of Object.entries(props)) {
             // Skip container style props as they are already handled
             if (STYLE_PROPS.has(key)) continue;
+
+            // Skip 'as' prop as it's handled above
+            if (key === 'as') continue;
 
             if (key === 'children') {
                 // Skip children if dangerouslySetInnerHTML is present and valid

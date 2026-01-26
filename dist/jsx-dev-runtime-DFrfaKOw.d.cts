@@ -13,7 +13,7 @@ interface MountedComponent {
     update: (newElement: JSXElement) => void;
 }
 type ComponentFunction<P = any> = (props: P) => JSXElement | null;
-type ContainerAs = 'div' | 'label' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main' | 'nav' | 'span' | 'button' | 'a' | 'form' | 'ul' | 'ol' | 'li';
+type ContainerAs = 'div' | 'label' | 'section' | 'article' | 'aside' | 'header' | 'footer' | 'main' | 'nav' | 'span' | 'button' | 'a' | 'form' | 'ul' | 'ol' | 'li' | (string & {});
 type ContainerDisplay = 'block' | 'inline-block' | 'flex' | 'inline-flex' | 'grid' | 'inline-grid';
 type ContainerDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 type ContainerAlign = 'start' | 'center' | 'end' | 'stretch' | 'baseline';

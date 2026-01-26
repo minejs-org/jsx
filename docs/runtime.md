@@ -129,7 +129,22 @@
             })
             ```
 
-        - ### 6. Overlay & Positioning
+            // Render a div as a button
+            const btn = jsx('div', {
+                as: 'button',
+                onClick: () => console.log('clicked'),
+                children: 'Click me'
+            })
+
+            // Render as a link
+            const link = jsx('div', {
+                as: 'a',
+                href: 'https://example.com',
+                children: 'Go to Example'
+            })
+            ```
+
+        - ### 7. Overlay & Positioning
             > Use the `overlay` prop to create full-screen overlays with alignment options.
 
             ```typescript
