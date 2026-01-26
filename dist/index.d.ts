@@ -1,5 +1,5 @@
-import { J as JSXElement, R as RenderOptions, M as MountedComponent } from './jsx-dev-runtime-BMji0LKs.js';
-export { C as ComponentFunction, d as ContainerAlign, N as ContainerAnimateDelay, L as ContainerAnimateDuration, O as ContainerAnimateEase, P as ContainerAnimateFill, K as ContainerAnimation, a as ContainerAs, q as ContainerBg, s as ContainerBorderColor, t as ContainerBorderStyle, u as ContainerBorderWidth, z as ContainerCursor, c as ContainerDirection, b as ContainerDisplay, j as ContainerFraction, f as ContainerGap, n as ContainerHeight, e as ContainerJustify, p as ContainerMaxHeight, l as ContainerMaxWidth, o as ContainerMinHeight, m as ContainerMinWidth, y as ContainerOverflow, B as ContainerPointerEvents, x as ContainerPosition, S as ContainerProps, v as ContainerRadius, D as ContainerResize, i as ContainerScale, w as ContainerShadow, g as ContainerSpace, h as ContainerSpaceOrAuto, G as ContainerTextAlign, r as ContainerTextColor, E as ContainerTextSize, I as ContainerTextTransform, F as ContainerTextWeight, H as ContainerTextWrap, A as ContainerUserSelect, k as ContainerWidth, a0 as For, W as Fragment, T as JSXProps, Q as OverlayPosition, _ as Show, $ as Switch, X as component, Z as createElements, Y as defineComponent, U as jsx, V as jsxs } from './jsx-dev-runtime-BMji0LKs.js';
+import { J as JSXElement, R as RenderOptions, M as MountedComponent, O as OverlayPosition } from './jsx-dev-runtime-C8Et6jKR.js';
+export { C as ComponentFunction, d as ContainerAlign, N as ContainerAnimateDelay, L as ContainerAnimateDuration, P as ContainerAnimateEase, Q as ContainerAnimateFill, K as ContainerAnimation, a as ContainerAs, q as ContainerBg, s as ContainerBorderColor, t as ContainerBorderStyle, u as ContainerBorderWidth, z as ContainerCursor, c as ContainerDirection, b as ContainerDisplay, j as ContainerFraction, f as ContainerGap, n as ContainerHeight, e as ContainerJustify, p as ContainerMaxHeight, l as ContainerMaxWidth, o as ContainerMinHeight, m as ContainerMinWidth, y as ContainerOverflow, B as ContainerPointerEvents, x as ContainerPosition, S as ContainerProps, v as ContainerRadius, D as ContainerResize, i as ContainerScale, w as ContainerShadow, g as ContainerSpace, h as ContainerSpaceOrAuto, G as ContainerTextAlign, r as ContainerTextColor, E as ContainerTextSize, I as ContainerTextTransform, F as ContainerTextWeight, H as ContainerTextWrap, A as ContainerUserSelect, k as ContainerWidth, a0 as For, W as Fragment, T as JSXProps, _ as Show, $ as Switch, X as component, Z as createElements, Y as defineComponent, U as jsx, V as jsxs } from './jsx-dev-runtime-C8Et6jKR.js';
 import '@minejs/signals';
 
 /**
@@ -103,4 +103,87 @@ declare function normalizeString(value: string): string;
  */
 declare function cleanClassName(value: string): string;
 
-export { ErrorBoundary, JSXElement, MountedComponent, RenderOptions, Suspense, Teleport, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
+interface DividerProps {
+    orientation?: 'horizontal' | 'vertical';
+    variant?: 'solid' | 'dashed' | 'dotted';
+    thickness?: 'super-thin' | 'thin' | 'medium' | 'thick';
+    color?: '1' | '2' | '3' | 'brand' | 'current';
+    opacity?: 0 | 5 | 10 | 20 | 25 | 30 | 40 | 50 | 60 | 70 | 75 | 80 | 90 | 95 | 100;
+    spacing?: 0 | 1 | 2 | 3 | 4 | 6 | 8 | 12;
+    max?: number;
+    className?: string;
+    role?: string;
+    'aria-orientation'?: 'horizontal' | 'vertical';
+    [key: string]: any;
+}
+/**
+ * Renders a visual divider line to separate content.
+ */
+declare function Divider(props: DividerProps): JSXElement | null;
+
+interface OverlayProps {
+    children?: any;
+    /**
+     * The ID of the form element the overlay is bound to (renders as a label).
+     */
+    htmlFor?: string;
+    /**
+     * Whether to show a backdrop (dimmed background).
+     * @default false
+     */
+    backdrop?: boolean;
+    /**
+     * The z-index of the overlay.
+     * @default 50
+     */
+    zIndex?: number;
+    /**
+     * The position of the content within the overlay.
+     * @default 'center'
+     */
+    position?: OverlayPosition;
+    /**
+     * Additional CSS classes.
+     */
+    className?: string;
+    /**
+     * Inline styles.
+     */
+    style?: any;
+    /**
+     * Click handler for the overlay background (often used to close).
+     */
+    onClick?: (e: any) => void;
+    /**
+     * Any other props
+     */
+    [key: string]: any;
+}
+/**
+ * Overlay component that renders a full-screen container with flexible positioning.
+ */
+declare function Overlay(props: OverlayProps): JSXElement;
+
+interface TextProps {
+    as?: string;
+    children?: any;
+    size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl' | '6xl';
+    weight?: 'thin' | 'extralight' | 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold' | 'black';
+    align?: 'start' | 'center' | 'end' | 'justify';
+    color?: '1' | '2' | '3' | 'brand' | 'success' | 'warning' | 'danger' | 'info' | 'current';
+    display?: 'inline' | 'block' | 'inline-block';
+    italic?: boolean;
+    underline?: boolean;
+    lineThrough?: boolean;
+    truncate?: boolean;
+    noWrap?: boolean;
+    className?: string;
+    style?: any;
+    [key: string]: any;
+}
+/**
+ * Text component for standardized typography.
+ */
+declare function Text(props: TextProps): JSXElement;
+
+export { Divider, type DividerProps, ErrorBoundary, JSXElement, MountedComponent, Overlay, OverlayPosition, type OverlayProps, RenderOptions, Suspense, Teleport, Text, type TextProps, cleanClassName, createPortal, createRoot, hydrate, isBrowser, lazy, minifyHTML, mount, normalizeString, onDOMReady, queueUpdate, render };
